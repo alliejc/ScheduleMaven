@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default Footer = () => (
-    <footer className="page-footer orange">
+    <footer className="page-footer red accent-1">
         <div className="container">
             <div className="row">
                 <div className="col l6 s12">

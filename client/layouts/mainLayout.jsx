@@ -4,11 +4,9 @@
 import React from 'react';
 
 export const MainLayout = ({header, content, footer}) => (
-    <div>
+    <div className="section grey lighten-5">
         {header}
-        <div className="container">
             {content}
-        </div>
         {footer}
     </div>
 );
