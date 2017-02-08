@@ -2,23 +2,23 @@ import React from 'react';
 
 export default Content = ({name}) => (
     <div>
-        <div className="section no-pad-bot" id="index-banner">
-            <div className="container">
-                <br/><br/>
-                <h1 className="header center orange-text">Hello, {name}</h1>
-                <div className="row center">
-                    <h5 className="header col s12 light">A modern responsive front-end framework based on Material Design</h5>
-                </div>
-                <div className="row center">
-                    <a href="http://materializecss.com/getting-started.html" id="download-button" className="btn-large waves-effect waves-light orange">Get Started</a>
-                </div>
-                <br/><br/>
-            </div>
-        </div>
+        {/*<div className="section no-pad-bot" id="index-banner">*/}
+            {/*<div className="container">*/}
+                {/*<br/><br/>*/}
+                {/*<h1 className="header center orange-text">Hello, {name}</h1>*/}
+                {/*<div className="row center">*/}
+                    {/*<h5 className="header col s12 light">A modern responsive front-end framework based on Material Design</h5>*/}
+                {/*</div>*/}
+                {/*<div className="row center">*/}
+                    {/*<a href="http://materializecss.com/getting-started.html" id="download-button" className="btn-large waves-effect waves-light orange">Get Started</a>*/}
+                {/*</div>*/}
+                {/*<br/><br/>*/}
+            {/*</div>*/}
+        {/*</div>*/}
         <div className="container"/>
         <div className="section">
             <div className="row">
-                <div className="col s12 m4">
+                <div className="col s4 push-s8">
                     <div className="icon-block">
                         <h2 className="center light-blue-text">
                             <i className="material-icons">flash_on</i>
@@ -29,18 +29,18 @@ export default Content = ({name}) => (
                     </div>
                 </div>
 
-                <div className="col s12 m4">
-                    <div className="icon-block">
-                        <h2 className="center light-blue-text">
-                            <i className="material-icons">group</i>
-                        </h2>
-                        <h5 className="center">User Experience Focused</h5>
+                {/*<div className="col s12 m4">*/}
+                    {/*<div className="icon-block">*/}
+                        {/*<h2 className="center light-blue-text">*/}
+                            {/*<i className="material-icons">group</i>*/}
+                        {/*</h2>*/}
+                        {/*<h5 className="center">User Experience Focused</h5>*/}
 
-                        <p className="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-                    </div>
-                </div>
+                        {/*<p className="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>*/}
+                    {/*</div>*/}
+                {/*</div>*/}
 
-                <div className="col s12 m4">
+                <div className="col s8 pull-s4">
                     <div className="icon-block">
                         <h2 className="center light-blue-text">
                             <i className="material-icons">settings</i>
