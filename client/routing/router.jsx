@@ -9,6 +9,7 @@ FlowRouter.route("/", {
     action () {
         mount(MainLayout, {
             header: <Header/>,
+            subheader: <SubHeader/>,
             content: <Content/>,
             footer: <Footer/>
         });

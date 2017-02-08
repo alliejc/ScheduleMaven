@@ -3,9 +3,10 @@
 
 import React from 'react';
 
-export const MainLayout = ({header, content, footer}) => (
-    <div className="section grey lighten-5">
+export const MainLayout = ({header, subheader, content, footer}) => (
+    <div className="section grey lighten-5 ">
         {header}
+        {subheader}
             {content}
         {footer}
     </div>
