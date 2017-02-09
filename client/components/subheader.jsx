@@ -4,7 +4,8 @@ import React from 'react';
 
 export default SubHeader = () =>(
     <div className=" row grey lighten-3 z-depth-1">
-            <div className=" section input-field col s3">
+        <h5 className="center section col s6">Board Title</h5>
+            <div className="center section input-field col s3">
                 <select>
                     <option value="" disabled selected>Choose your option</option>
                     <option value="1">Option 1</option>
@@ -13,7 +14,7 @@ export default SubHeader = () =>(
                 </select>
                 <label>Chose a Pinterest Board</label>
             </div>
-        <div className="section input-field col s3">
+        <div className="center section input-field col s3">
             <textarea id="textarea1" class="materialize-textarea"></textarea>
             <label for="textarea1">Paste URL http://</label>
         </div>

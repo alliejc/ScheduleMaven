@@ -4,7 +4,7 @@ export default ScheduleItem = () => (
     <div className="row">
         <div className="col s6">
             <div className="card">
-            <img className="responsive-img" src="img/card_placeholder.jpg" width='100px' height='5px'/>
+            <img className="responsive-img" src="img/card_placeholder.jpg" width='auto' height='5px'/>
                 <time className="center" height='5px'>10:00am</time>
             </div>
         </div>
