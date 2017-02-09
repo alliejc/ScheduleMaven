@@ -3,7 +3,7 @@ import React from 'react';
 // Todo: dynamically fill options with user pinterest boards
 
 export default SubHeader = () =>(
-    <div className=" row grey lighten-3">
+    <div className=" row grey lighten-3 z-depth-1">
             <div className=" section input-field col s3">
                 <select>
                     <option value="" disabled selected>Choose your option</option>
