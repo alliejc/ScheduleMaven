@@ -8,22 +8,24 @@ import MenuItem from 'material-ui/MenuItem';
 // }
 
 class ChooseABoard extends React.Component{
+
     constructor(props) {
         super(props);
-        this.state = {value: 1};
-        console.log(this.state.value);
+
+        this.state = {
+            value: 1
+        };
     }
+
+
 
     handleChange = (event, index, value) => {
         this.setState({value});
         if(this.props.onChange){
             this.props.onChange(value);
-            console.log("handleChange/value" + value);
-            console.log("handleChange/index" + index);
-            console.log("handleChange/event" + event);
 
         }
-    }
+    };
 
     render(){
         return(
