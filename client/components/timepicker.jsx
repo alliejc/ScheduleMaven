@@ -16,6 +16,7 @@ class Timepicker extends React.Component {
         } else {
             CardData.insert({ampm: "pm"});
         }
+        
         CardData.insert({hour: hours});
         CardData.insert({minutes: minutes});
 

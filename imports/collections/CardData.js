@@ -32,7 +32,6 @@ const CardDataSchema = new SimpleSchema({
         type: String,
         optional: true,
     },
-
     img: {
         type: String,
         optional: true,

@@ -2,6 +2,7 @@ import React from 'react';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 
+
 // const items = [];
 // for (let i = 0; i < 100; i++ ) {
 //     items.push(<MenuItem value={i} key={i} primaryText={`Item ${i}`} />);
@@ -13,15 +14,20 @@ class ChooseABoard extends React.Component{
         super(props);
 
         this.state = {
-            value: 1
+            value: 1,
+            boardLink: "www.boardurl.com",
+            boardTitle: "Board Title"
         };
     }
 
+    // onChange: function(event: object, key: number, payload: any) => void
+//     event: TouchTap event targeting the menu item that was clicked.
+//     key: The index of the clicked menu item in the children collection.
+//     payload: The value prop of the clicked menu item.
     handleChange = (event, index, value) => {
-        this.setState({value});
+        this.setState({value: value});
         if(this.props.onChange){
             this.props.onChange(value);
-
         }
     };
 

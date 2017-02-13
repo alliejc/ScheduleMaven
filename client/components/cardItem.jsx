@@ -13,11 +13,8 @@ import CardData from '/imports/collections/CardData';
 class CardItem extends React.Component{
 
     state = {
-        time: null,
         date: "date",
         boardChoice: 1,
-        hours: 0,
-        minutes: 0,
     };
 
     cardItem = {
@@ -29,12 +26,8 @@ class CardItem extends React.Component{
         article: 'meta data article name'
     };
 
-    setTime = (dateobject, hours, minutes) => {
-        this.setState({hours: hours});
-        this.setState({minutes: minutes});
-    };
-
-    setDate = () => {
+    setDate = (event) => {
+        this.setState({date: event});
     };
 
     setBoard = (event) => {
@@ -43,12 +36,8 @@ class CardItem extends React.Component{
 
     handleOnClickSubmit = () => {
         CardData.insert({boardChoiceTitle: this.state.boardChoice});
-        // CardData.insert({hour: this.state.hours});
-        // CardData.insert({minutes: this.state.minutes});
 
         console.log(this.state.boardChoice);
-        console.log(this.state.minutes);
-        console.log(this.state.hours);
     };
 
     render() {
@@ -64,28 +53,13 @@ class CardItem extends React.Component{
                         <CardText> {this.cardItem.note} </CardText>
                         <CardActions>
                             <ChooseABoard onChange={(item) => this.setBoard(item)}/>
-                            <TimePicker onChange={(dateobject, hours, minutes) => this.setTime(dateobject, hours, minutes)}/>
-                            <Calendar onChange={(item) => this.setDate(item)} day={this.state.date}/>
+                            <TimePicker />
+                            <Calendar />
                             <FlatButton label="Submit" primary={true} onClick={this.handleOnClickSubmit.bind(this)}/>
                         </CardActions>
                     </Card>
                     </div>
-                    <div className="row col s4 m3 l2">
-                        <Card>
-                            <CardMedia>
-                                <img src={this.cardItem.image}/>
-                            </CardMedia>
-                            <CardTitle title={this.cardItem.article} subtitle={this.cardItem.link} />
-                            <CardText> {this.cardItem.note} </CardText>
-                            <CardActions>
-                                <ChooseABoard onChange={(item) => this.setBoard(item)}/>
-                                <TimePicker onChange={(item) => this.setTime(item)}/>
-                                <Calendar onChange={(item) => this.setDate(item)} day={this.state.date}/>
-                                <FlatButton label="Submit" primary={true} onClick={this.handleOnClickSubmit.bind(this)}/>
-                            </CardActions>
-                        </Card>
                     </div>
-                </div>
                 </div>
         );
     }
