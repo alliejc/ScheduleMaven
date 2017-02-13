@@ -8,9 +8,6 @@ class DatePickerClass extends React.Component {
 
         this.state = {
             date: 0,
-            day: 0,
-            month: 0,
-            year: 0
         }
     }
 
@@ -22,14 +19,13 @@ class DatePickerClass extends React.Component {
     // date: The new date.
 
     handleChange = (event, date) => {
-        let day = date.getDay().valueOf();
-        let month = date.getMonth().valueOf();
+        let day = date.getDate();
+        let month = date.getMonth();
         let year = date.getFullYear();
 
-        this.setState({day: day});
-        this.setState({month: month});
-        this.setState({year: year});
-
+        CardData.insert({day: day});
+        CardData.insert({month: month});
+        CardData.insert({year: year});
     };
 
     render() {
