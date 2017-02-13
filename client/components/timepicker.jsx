@@ -1,22 +1,24 @@
 import React from 'react';
 import TimePicker from 'material-ui/TimePicker';
+import CardData from '/imports/collections/CardData';
 
 class Timepicker extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            hours: null,
-            minutes: null,
-            dateObject: null
-        };
     }
 
     handleChangeTimePicker = (event, date) => {
-        this.setState({dateObject: date, hours:date.getHours(), minutes:date.getMinutes()});
-        if(this.props.onChange){
-            this.props.onChange({dateObject: date, hours:date.getHours(), minutes:date.getMinutes()});
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+
+        if(hours <= 12){
+            CardData.insert({ampm: "am"});
+        } else {
+            CardData.insert({ampm: "pm"});
         }
+        CardData.insert({hour: hours});
+        CardData.insert({minutes: minutes});
+
         console.log({hours:date.getHours(), minutes:date.getMinutes()});
     };
 
@@ -26,7 +28,6 @@ class Timepicker extends React.Component {
                 <TimePicker
                     hintText="Set Time"
                     format="ampm"
-                    value={this.state.dateObject}
                     onChange={this.handleChangeTimePicker}
                 />
             </div>

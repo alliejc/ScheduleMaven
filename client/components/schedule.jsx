@@ -44,7 +44,7 @@ class Schedule extends React.Component {
         return (
             <div>
                 <RaisedButton
-                    label="Toggle Drawer"
+                    label="See Schedule"
                     onTouchTap={this.handleToggle}/>
                 <Drawer
                     width={500}
@@ -54,7 +54,7 @@ class Schedule extends React.Component {
                             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
                             onTouchTap={this.handleToggle}
                     />
-                    <div className="teal lighten-2 z-depth-2" id="calendar"></div>;
+                    <div className="teal lighten-2 z-depth-2" id="calendar"></div>
                 </Drawer>
             </div>
             );

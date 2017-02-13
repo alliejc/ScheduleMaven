@@ -1,6 +1,6 @@
 import React from 'react';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
-import ChooseABoard from '/client/components/chooseABoard';
+import ChooseABoard from '/client/components/chooseaboard';
 import TextField from 'material-ui/TextField';
 import Schedule from './schedule';
 import RaisedButton from 'material-ui/RaisedButton';

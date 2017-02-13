@@ -17,8 +17,6 @@ class ChooseABoard extends React.Component{
         };
     }
 
-
-
     handleChange = (event, index, value) => {
         this.setState({value});
         if(this.props.onChange){
@@ -32,12 +30,12 @@ class ChooseABoard extends React.Component{
             <div>
                 <DropDownMenu maxHeight={300} value={this.state.value} onChange={this.handleChange}>
                     <MenuItem value={1} primaryText="Choose a Board" />
-                    <MenuItem value={2} primaryText="All Voice" />
-                    <MenuItem value={3} primaryText="All Text" />
-                    <MenuItem value={4} primaryText="Complete Voice" />
-                    <MenuItem value={5} primaryText="Complete Text" />
-                    <MenuItem value={6} primaryText="Active Voice" />
-                    <MenuItem value={7} primaryText="Active Text" />
+                    <MenuItem value={2} primaryText="Travel" />
+                    <MenuItem value={3} primaryText="Food" />
+                    <MenuItem value={4} primaryText="DIY" />
+                    <MenuItem value={5} primaryText="Home Decor" />
+                    <MenuItem value={6} primaryText="Misc" />
+                    <MenuItem value={7} primaryText="Love" />
                 </DropDownMenu>
             </div>
         )

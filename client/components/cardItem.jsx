@@ -1,8 +1,10 @@
 import React from 'react';
-import Calendar from '/client/components/calendar';
+import Calendar from '/client/components/datepicker';
 import TimePicker from '/client/components/timepicker';
-import ChooseABoard from '/client/components/chooseABoard';
-import {FlatButton, Card} from 'material-ui/';
+import ChooseABoard from '/client/components/chooseaboard';
+import {FlatButton} from 'material-ui/';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import CardData from '/imports/collections/CardData';
 
 
 // Todo: Replace card image, title, and description with info from Pinterest card
@@ -12,8 +14,10 @@ class CardItem extends React.Component{
 
     state = {
         time: null,
-        date: null,
-        boardChoice: 1
+        date: "date",
+        boardChoice: 1,
+        hours: 0,
+        minutes: 0,
     };
 
     cardItem = {
@@ -25,42 +29,64 @@ class CardItem extends React.Component{
         article: 'meta data article name'
     };
 
-    setTime = (event) => {
-        this.setState({time: event});
-        console.log("setTime" + this.state.time);
+    setTime = (dateobject, hours, minutes) => {
+        this.setState({hours: hours});
+        this.setState({minutes: minutes});
     };
 
-    setDate = (event) => {
-        this.setState({date: event});
+    setDate = () => {
     };
 
     setBoard = (event) => {
         this.setState({boardChoice: event});
-        console.log("setBoard" + this.state.boardChoice);
+    };
+
+    handleOnClickSubmit = () => {
+        CardData.insert({boardChoiceTitle: this.state.boardChoice});
+        // CardData.insert({hour: this.state.hours});
+        // CardData.insert({minutes: this.state.minutes});
+
+        console.log(this.state.boardChoice);
+        console.log(this.state.minutes);
+        console.log(this.state.hours);
     };
 
     render() {
-
         return (
             <div>
                 <div className="row">
-                    <div className="col s4">
-                        <div className="card white">
-                            <div className="card-content black-text">
-                                <div className="row">
-                                    <img className="responsive-img" src={this.cardItem.image}/>
-                                    <span className="card-title">{this.cardItem.article}</span>
-                                    <p>{this.cardItem.note}</p>
-                                </div>
-                                <div className="row"><ChooseABoard onChange={(item) => this.setBoard(item)}/></div>
-                                <div className="row"><TimePicker onChange={(item) => this.setTime(item)}/></div>
-                                <div className="row"><Calendar day={this.state.date}/></div>
-                                <div className="row"><FlatButton label="Primary" primary={true}/></div>
-                            </div>
-                        </div>
+                    <div className="row col s4 m3 l2">
+                    <Card>
+                        <CardMedia>
+                            <img src={this.cardItem.image}/>
+                        </CardMedia>
+                        <CardTitle title={this.cardItem.article} subtitle={this.cardItem.link} />
+                        <CardText> {this.cardItem.note} </CardText>
+                        <CardActions>
+                            <ChooseABoard onChange={(item) => this.setBoard(item)}/>
+                            <TimePicker onChange={(dateobject, hours, minutes) => this.setTime(dateobject, hours, minutes)}/>
+                            <Calendar onChange={(item) => this.setDate(item)} day={this.state.date}/>
+                            <FlatButton label="Submit" primary={true} onClick={this.handleOnClickSubmit.bind(this)}/>
+                        </CardActions>
+                    </Card>
+                    </div>
+                    <div className="row col s4 m3 l2">
+                        <Card>
+                            <CardMedia>
+                                <img src={this.cardItem.image}/>
+                            </CardMedia>
+                            <CardTitle title={this.cardItem.article} subtitle={this.cardItem.link} />
+                            <CardText> {this.cardItem.note} </CardText>
+                            <CardActions>
+                                <ChooseABoard onChange={(item) => this.setBoard(item)}/>
+                                <TimePicker onChange={(item) => this.setTime(item)}/>
+                                <Calendar onChange={(item) => this.setDate(item)} day={this.state.date}/>
+                                <FlatButton label="Submit" primary={true} onClick={this.handleOnClickSubmit.bind(this)}/>
+                            </CardActions>
+                        </Card>
                     </div>
                 </div>
-            </div>
+                </div>
         );
     }
 }
