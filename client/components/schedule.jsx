@@ -19,12 +19,15 @@ class Schedule extends React.Component {
     };
 
     componentDidMount() {
+        let data = this.props.scheduledItems.map(item => ({ id: item._id}))
+
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
                 center: 'title',
                 right: 'month,agendaWeek,agendaDay'
             },
+            selectable: true,
             editable: true,
             droppable: true, // this allows things to be dropped onto the calendar
             drop: function() {
@@ -46,7 +49,6 @@ class Schedule extends React.Component {
 
     render() {
         // console.log(this.props.scheduledItems);
-        this.props.scheduledItems.map(item => ({ Day: item.day, Month: item.month }))
         return (
             <div>
                 <RaisedButton

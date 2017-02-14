@@ -2,7 +2,7 @@ import React from 'react';
 import {Toolbar, ToolbarGroup, ToolbarTitle} from 'material-ui/Toolbar';
 import ChooseABoard from '/client/components/chooseaboard';
 import TextField from 'material-ui/TextField';
-import Schedule from './schedule';
+import ScheduleTwo from './scheduletwo';
 import RaisedButton from 'material-ui/RaisedButton';
 
 // Todo: dynamically fill options with user pinterest boards
@@ -34,7 +34,7 @@ class SubHeader extends React.Component {
                     {/*<RaisedButton label="Toggle Drawer" onClick={this.handleSupportNavBarChange}/>*/}
                 </ToolbarGroup>
             </Toolbar>
-                <Schedule />
+                <ScheduleTwo />
             </div>
 
         );
