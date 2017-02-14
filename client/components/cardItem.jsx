@@ -13,8 +13,13 @@ import CardData from '/imports/collections/CardData';
 class CardItem extends React.Component{
 
     state = {
-        date: "date",
         boardChoice: 1,
+        hour: 0,
+        minutes: 0,
+        day: 0,
+        month: 0,
+        year: 0,
+        ampm: ""
     };
 
     cardItem = {
@@ -26,18 +31,40 @@ class CardItem extends React.Component{
         article: 'meta data article name'
     };
 
-    setDate = (event) => {
-        this.setState({date: event});
+    setTime = (hour, minutes) => {
+        if(hour < 12){
+            this.setState({ampm: "am"});
+        } else {
+            this.setState({ampm: "pm"});
+        }
+
+        this.setState({minutes: minutes});
+        this.setState({hour: hour});
+
     };
 
-    setBoard = (event) => {
-        this.setState({boardChoice: event});
+    setDate = (day, month, year) => {
+        this.setState({day: day});
+        this.setState({month: month});
+        this.setState({year: year});
+    };
+
+    setBoard = (board) => {
+        this.setState({boardChoice: board});
     };
 
     handleOnClickSubmit = () => {
-        CardData.insert({boardChoiceTitle: this.state.boardChoice});
+        let cardInsertData = {};
 
-        console.log(this.state.boardChoice);
+        cardInsertData.boardChoice = this.state.boardChoice;
+        cardInsertData.day = this.state.day;
+        cardInsertData.month = this.state.month;
+        cardInsertData.year = this.state.year;
+        cardInsertData.hour = this.state.hour;
+        cardInsertData.minutes = this.state.minutes;
+        cardInsertData.ampm = this.state.ampm;
+
+        CardData.insert(cardInsertData);
     };
 
     render() {
@@ -52,9 +79,9 @@ class CardItem extends React.Component{
                         <CardTitle title={this.cardItem.article} subtitle={this.cardItem.link} />
                         <CardText> {this.cardItem.note} </CardText>
                         <CardActions>
-                            <ChooseABoard onChange={(item) => this.setBoard(item)}/>
-                            <TimePicker />
-                            <Calendar />
+                            <ChooseABoard onChange={(board) => this.setBoard(board)}/>
+                            <TimePicker onChange={(hour, minutes) => this.setTime(hour, minutes)}/>
+                            <Calendar onChange={(day, month, year) => this.setDate(day, month, year)} day={this.state.date}/>
                             <FlatButton label="Submit" primary={true} onClick={this.handleOnClickSubmit.bind(this)}/>
                         </CardActions>
                     </Card>

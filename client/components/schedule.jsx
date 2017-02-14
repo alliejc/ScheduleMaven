@@ -4,6 +4,8 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import { createContainer } from 'meteor/react-meteor-data';
+import CardData from '../../imports/collections/CardData';
 
 
 class Schedule extends React.Component {
@@ -11,7 +13,8 @@ class Schedule extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: true
+            open: true,
+            title: 'test'
         };
     };
 
@@ -36,12 +39,14 @@ class Schedule extends React.Component {
 
     handleToggle = () => {
         this.setState({open: !this.state.open});
-        // if (this.props.onChange) {
-        //     this.props.onChange({open: !this.state.open});
-        // }
+        if (this.props.onChange) {
+            this.props.onChange({open: !this.state.open});
+        }
     };
 
     render() {
+        // console.log(this.props.scheduledItems);
+        this.props.scheduledItems.map(item => ({ Day: item.day, Month: item.month }))
         return (
             <div>
                 <RaisedButton
@@ -61,4 +66,8 @@ class Schedule extends React.Component {
             );
     }
 }
-export default Schedule;
+// export default Schedule;
+export default createContainer(() => (
+    {
+        scheduledItems: CardData.find({}).fetch(),
+    }), Schedule);

@@ -7,25 +7,25 @@ class DatePickerClass extends React.Component {
         super(props);
 
         this.state = {
-            date: 0,
+            day: 0,
+            month: 0,
+            year: 0
         }
     }
 
-    // Callback function that is fired when the date value changes.
-    //
-    // Signature:
-    // function(null: undefined, date: object) => void
-    // null: Since there is no particular event associated with the change, the first argument will always be null.
-    // date: The new date.
-
     handleChange = (event, date) => {
         let day = date.getDate();
-        let month = date.getMonth();
+        let month = date.getMonth() + 1;
         let year = date.getFullYear();
 
-        CardData.insert({day: day});
-        CardData.insert({month: month});
-        CardData.insert({year: year});
+        this.setState({day: day});
+        this.setState({month: month});
+        this.setState({year: year});
+
+        if(this.props.onChange){
+            this.props.onChange(day, month, year);
+        }
+
     };
 
     render() {

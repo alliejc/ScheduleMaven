@@ -7,33 +7,21 @@ class Timepicker extends React.Component {
         super(props);
 
         this.state = {
-            hours: 0,
-            minutes: 0,
-            ampm: ""
+            hour: 0,
+            minutes: 0
         }
     }
 
     handleChangeTimePicker = (event, date) => {
-        let hours = date.getHours();
+        let hour = date.getHours();
         let minutes = date.getMinutes();
 
-        if(hours < 12){
-            CardData.insert({ampm: "am"});
-            this.setState({ampm: "am"});
-        } else {
-            CardData.insert({ampm: "pm"});
-            this.setState({ampm: "pm"});
-        }
-
-        CardData.insert({hour: hours});
-        CardData.insert({minutes: minutes});
-
         this.setState({minutes: minutes});
-        this.setState({hours: hours});
+        this.setState({hour: hour});
 
-        console.log(this.state.ampm);
-        console.log(this.state.minutes);
-        console.log(this.state.hours);
+        if(this.props.onChange){
+            this.props.onChange(hour, minutes);
+        }
 
     };
 
