@@ -13,7 +13,7 @@ import CardData from '/imports/collections/CardData';
 class CardItem extends React.Component{
 
     state = {
-        boardChoice: 1,
+        boardChoiceTitle: 1,
         hour: 0,
         minutes: 0,
         day: 0,
@@ -50,13 +50,13 @@ class CardItem extends React.Component{
     };
 
     setBoard = (board) => {
-        this.setState({boardChoice: board});
+        this.setState({boardChoiceTitle: board});
     };
 
     handleOnClickSubmit = () => {
         let cardInsertData = {};
 
-        cardInsertData.boardChoice = this.state.boardChoice;
+        cardInsertData.boardChoiceTitle = this.state.boardChoiceTitle;
         cardInsertData.day = this.state.day;
         cardInsertData.month = this.state.month;
         cardInsertData.year = this.state.year;

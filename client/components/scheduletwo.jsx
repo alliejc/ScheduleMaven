@@ -19,7 +19,6 @@ class ScheduleTwo extends React.Component {
         super(props);
         this.state = {
             open: true,
-            title: 'test'
         };
     }
 
@@ -31,7 +30,12 @@ class ScheduleTwo extends React.Component {
     };
 
     render() {
-        // console.log(this.props.scheduledItems);
+        console.log(this.props.scheduledItems);
+
+        events = this.props.scheduledItems
+            .map(event => ({start: new Date(event.year, event.month -1, event.day, event.hour, event.minutes), end: new Date(event.year, event.month -1, event.day, event.hour, event.minutes + 15), title: event.boardChoiceTitle}));
+        console.log(events);
+
         return (
             <div>
                 <RaisedButton
@@ -45,15 +49,15 @@ class ScheduleTwo extends React.Component {
                             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
                             onTouchTap={this.handleToggle}
                     />
-                        <div>
-                            <BigCalendar
-                                defaultView='day'
-                                events={this.props.scheduledItems}
-                                startAccessor='startDate'
-                                endAccessor='endDate'
-                                style={{height: 800}}
-                                selectable={true}
-                                />
+                    <div>
+                        <BigCalendar
+                            defaultView='agenda'
+                            events={events}
+                            startAccessor='start'
+                            endAccessor='end'
+                            style={{height: 800}}
+                            selectable={true}
+                        />
                     </div>
                 </Drawer>
             </div>

@@ -41,7 +41,7 @@ const CardDataSchema = new SimpleSchema({
         optional: true,
     },
     boardChoiceTitle: {
-        type: Number,
+        type: String,
         optional: true,
     },
     pinId: {
