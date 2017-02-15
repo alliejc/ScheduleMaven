@@ -24,7 +24,7 @@ class Schedule extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            navbarOpen: true,
+            open: true,
             dialogOpen: false,
         };
     }
@@ -98,12 +98,10 @@ class Schedule extends React.Component {
                     actions={actions}
                     modal={true}
                     open={this.state.dialogOpen}
-                    onRequestClose={this.handleClose()}
-                    contentStyle={customContentStyle}
-                >
+                    contentStyle={customContentStyle}>
                 </Dialog>
             </div>
-        );
+        )
     }
 }
 
