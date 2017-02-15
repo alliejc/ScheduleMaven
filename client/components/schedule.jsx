@@ -4,41 +4,44 @@ import AppBar from 'material-ui/AppBar';
 import RaisedButton from 'material-ui/RaisedButton';
 import IconButton from 'material-ui/IconButton';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import { createContainer } from 'meteor/react-meteor-data';
+import  'react-big-calendar/lib/css/react-big-calendar.css'
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
 import CardData from '../../imports/collections/CardData';
+import {createContainer} from 'meteor/react-meteor-data';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
+BigCalendar.momentLocalizer(moment);
+
+const customContentStyle = {
+    width: '100%',
+    maxWidth: 'none',
+    image: '/img/card_placeholder.jpg',
+};
 
 class Schedule extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            open: true,
-            title: 'test'
+            navbarOpen: true,
+            dialogOpen: false,
         };
+    }
+
+    handleSelectEvent = (event) => {
+        console.log("Select event:");
+        console.log(event);
+
+        this.setState({dialogOpen: true});
+        if (this.props.onChange) {
+            this.props.onChange({dialogOpen: true});
+        }
     };
 
-    componentDidMount() {
-        let data = this.props.scheduledItems.map(item => ({ id: item._id}))
-
-        $('#calendar').fullCalendar({
-            header: {
-                left: 'prev,next today',
-                center: 'title',
-                right: 'month,agendaWeek,agendaDay'
-            },
-            selectable: true,
-            editable: true,
-            droppable: true, // this allows things to be dropped onto the calendar
-            drop: function() {
-                // is the "remove after drop" checkbox checked?
-                if ($('#drop-remove').is(':checked')) {
-                    // if so, remove the element from the "Draggable Events" list
-                    $(this).remove();
-                }
-            }
-        })
-    }
+    handleClose = () => {
+        this.setState({dialogOpen: false});
+    };
 
     handleToggle = () => {
         this.setState({open: !this.state.open});
@@ -48,27 +51,62 @@ class Schedule extends React.Component {
     };
 
     render() {
-        // console.log(this.props.scheduledItems);
+
+        events = this.props.scheduledItems
+            .map(event => ({
+                start: new Date(event.year, event.month - 1, event.day, event.hour, event.minutes),
+                end: new Date(event.year, event.month - 1, event.day, event.hour, event.minutes + 15),
+                title: event.boardChoiceTitle
+            }));
+
+        const actions = [
+            <FlatButton
+                label="Close"
+                primary={true}
+                onTouchTap={this.handleClose}
+            />,
+        ];
+
         return (
             <div>
                 <RaisedButton
                     label="See Schedule"
                     onTouchTap={this.handleToggle}/>
                 <Drawer
-                    width={500}
+                    width={700}
                     openSecondary={true}
                     open={this.state.open}>
                     <AppBar title="AppBar"
                             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
                             onTouchTap={this.handleToggle}
                     />
-                    <div className="teal lighten-2 z-depth-2" id="calendar"></div>
+                    <div>
+                        <BigCalendar
+                            defaultView='agenda'
+                            popup
+                            step={15}
+                            events={events}
+                            startAccessor='start'
+                            endAccessor='end'
+                            style={{height: 800, width: '100%'}}
+                            selectable={true}
+                            onSelectEvent={event => this.handleSelectEvent(event)}
+                        />
+                    </div>
                 </Drawer>
+                <Dialog
+                    actions={actions}
+                    modal={true}
+                    open={this.state.dialogOpen}
+                    onRequestClose={this.handleClose()}
+                    contentStyle={customContentStyle}
+                >
+                </Dialog>
             </div>
-            );
+        );
     }
 }
-// export default Schedule;
+
 export default createContainer(() => (
     {
         scheduledItems: CardData.find({}).fetch(),

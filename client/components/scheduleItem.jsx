@@ -4,8 +4,6 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 class ScheduleItem extends React.Component {
 
-  title = this.props.scheduledItems;
-
 
     render() {
         return(
