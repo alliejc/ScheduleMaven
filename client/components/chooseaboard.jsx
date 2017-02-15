@@ -1,6 +1,5 @@
 import React from 'react';
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
+import {DropDownMenu, MenuItem} from 'material-ui';
 
 
 // const items = [];
@@ -14,7 +13,7 @@ class ChooseABoard extends React.Component{
         super(props);
 
         this.state = {
-            value: 1,
+            value: "Header Board",
             boardLink: "www.boardurl.com",
             boardTitle: "Board Title"
         };
@@ -35,13 +34,14 @@ class ChooseABoard extends React.Component{
         return(
             <div>
                 <DropDownMenu maxHeight={300} value={this.state.value} onChange={this.handleChange}>
-                    <MenuItem value={1} primaryText="Choose a Board" />
-                    <MenuItem value={2} primaryText="Travel" />
-                    <MenuItem value={3} primaryText="Food" />
-                    <MenuItem value={4} primaryText="DIY" />
-                    <MenuItem value={5} primaryText="Home Decor" />
-                    <MenuItem value={6} primaryText="Misc" />
-                    <MenuItem value={7} primaryText="Love" />
+                    <MenuItem value="Header Board" primaryText="Choose a Board" />
+                    <MenuItem value="Board Title 1" primaryText="Beauty" />
+                    <MenuItem value="Board Title 2" primaryText="Travel" />
+                    <MenuItem value="Board Title 3" primaryText="Food" />
+                    <MenuItem value="Board Title 4" primaryText="DIY" />
+                    <MenuItem value="Board Title 5" primaryText="Home Decor" />
+                    <MenuItem value="Board Title 6" primaryText="Misc" />
+                    <MenuItem value="Board Title 7" primaryText="Love" />
                 </DropDownMenu>
             </div>
         )

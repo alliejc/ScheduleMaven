@@ -1,6 +1,5 @@
 import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
-import CardData from '/imports/collections/CardData';
 
 class DatePickerClass extends React.Component {
     constructor(props) {

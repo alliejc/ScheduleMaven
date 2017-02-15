@@ -1,6 +1,5 @@
 import React from 'react';
 import TimePicker from 'material-ui/TimePicker';
-import CardData from '/imports/collections/CardData';
 
 class Timepicker extends React.Component {
     constructor(props) {

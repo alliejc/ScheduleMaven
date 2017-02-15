@@ -2,8 +2,7 @@ import React from 'react';
 import Calendar from '/client/components/datepicker';
 import TimePicker from '/client/components/timepicker';
 import ChooseABoard from '/client/components/chooseaboard';
-import {FlatButton} from 'material-ui/';
-import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import {FlatButton, Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/';
 import CardData from '/imports/collections/CardData';
 
 
@@ -13,7 +12,7 @@ import CardData from '/imports/collections/CardData';
 class CardItem extends React.Component{
 
     state = {
-        boardChoiceTitle: 1,
+        boardChoiceTitle: "",
         hour: 0,
         minutes: 0,
         day: 0,
@@ -47,6 +46,7 @@ class CardItem extends React.Component{
         this.setState({day: day});
         this.setState({month: month});
         this.setState({year: year});
+        this.setState({note: this.cardItem.note})
     };
 
     setBoard = (board) => {
@@ -63,6 +63,7 @@ class CardItem extends React.Component{
         cardInsertData.hour = this.state.hour;
         cardInsertData.minutes = this.state.minutes;
         cardInsertData.ampm = this.state.ampm;
+        cardInsertData.pinNote = this.state.note;
 
         CardData.insert(cardInsertData);
     };
