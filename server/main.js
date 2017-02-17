@@ -2,8 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import '../imports/collections/CardData';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 import httpProxy from 'http-proxy';
-import http from 'http';
-
+import '../imports/api/pinterest-api';
 
 Meteor.startup(function() {
 console.log("startup");
@@ -20,8 +19,6 @@ console.log("startup");
         }
     }).listen(3001);
 
-    console.log(Meteor.settings.clientId);
-    console.log(Meteor.settings.secret);
     ServiceConfiguration.configurations.upsert({
         service: 'pinterest'
     }, {

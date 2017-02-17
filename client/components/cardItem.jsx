@@ -49,8 +49,8 @@ class CardItem extends React.Component{
         this.setState({note: this.cardItem.note})
     };
 
-    setBoard = (board) => {
-        this.setState({boardChoiceTitle: board});
+    setBoard = (title) => {
+        this.setState({boardChoiceTitle: title});
     };
 
     handleOnClickSubmit = () => {
@@ -80,7 +80,7 @@ class CardItem extends React.Component{
                         <CardTitle title={this.cardItem.article} subtitle={this.cardItem.link} />
                         <CardText> {this.cardItem.note} </CardText>
                         <CardActions>
-                            <ChooseABoard onChange={(board) => this.setBoard(board)}/>
+                            <ChooseABoard onChange={(title) => this.setBoard(title)}/>
                             <TimePicker onChange={(hour, minutes) => this.setTime(hour, minutes)}/>
                             <Calendar onChange={(day, month, year) => this.setDate(day, month, year)} day={this.state.date}/>
                             <FlatButton label="Submit" primary={true} onClick={this.handleOnClickSubmit.bind(this)}/>

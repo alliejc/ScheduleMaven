@@ -1,6 +1,12 @@
 import React from 'react';
 import { AppBar, RaisedButton,Toolbar, ToolbarGroup, ToolbarTitle, FlatButton, Dialog, IconButton } from 'material-ui/';
 
+const dialogStyle = {
+    width: '30%',
+    height: '30%',
+    maxWidth: 'none'
+};
+
 class Header extends React.Component {
     constructor(props) {
         super(props);
@@ -22,7 +28,8 @@ class Header extends React.Component {
 
     launchPinterestAuth = () => {
         Meteor.loginWithPinterest();
-    }
+        this.handleClose();
+    };
 
     render() {
 
@@ -45,7 +52,9 @@ class Header extends React.Component {
                     actions={actions}
                     modal={true}
                     open={this.state.dialogOpen}
-                    title="Login with Pinterest">
+                    title="Login with Pinterest"
+                    titleStyle={{textAlign: "center"}}
+                    contentStyle={dialogStyle}>
                 <IconButton onClick={this.launchPinterestAuth.bind(this)}>
                     <img src='/img/Pinterest-badge-144px.png'/>
                 </IconButton>

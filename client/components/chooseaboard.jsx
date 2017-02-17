@@ -1,11 +1,6 @@
 import React from 'react';
+// import { createContainer } from 'meteor/react-meteor-data';
 import {DropDownMenu, MenuItem} from 'material-ui';
-
-
-// const items = [];
-// for (let i = 0; i < 100; i++ ) {
-//     items.push(<MenuItem value={i} key={i} primaryText={`Item ${i}`} />);
-// }
 
 class ChooseABoard extends React.Component{
 
@@ -13,35 +8,58 @@ class ChooseABoard extends React.Component{
         super(props);
 
         this.state = {
-            value: "Header Board",
-            boardLink: "www.boardurl.com",
-            boardTitle: "Board Title"
+            boards: [],
+            selectedBoardId: '',
         };
     }
+
+    componentWillMount() {
+
+        console.log("componentWillMount");
+
+        Meteor.call('getBoards', (err, result) => {
+            this.setState({boards: result});
+
+            console.log("err " + err);
+            console.log("will mount " + result);
+        });
+
+    };
+
+    updateStateFromProps = (props) => {
+        console.log("updateStateFromProps");
+
+        if (props.user) {
+            Meteor.call('getBoards', (err, result) => {
+                this.setState({boards: result});
+                console.log("from props" + result);
+            });
+
+        }
+    };
 
     // onChange: function(event: object, key: number, payload: any) => void
 //     event: TouchTap event targeting the menu item that was clicked.
 //     key: The index of the clicked menu item in the children collection.
-//     payload: The value prop of the clicked menu item.
-    handleChange = (event, index, value) => {
-        this.setState({value: value});
+//     payload: The boards prop of the clicked menu item.
+    handleChange = (event, key, selectedBoardId) => {
+        console.log(selectedBoardId);
+
+        this.setState({ selectedBoardId });
+
         if(this.props.onChange){
-            this.props.onChange(value);
+            this.props.onChange(selectedBoardId);
+            console.log("handleChange boards" + selectedBoardId);
         }
     };
 
     render(){
+        const menuItems = this.state.boards
+            .map(board => (<MenuItem value={board.url} key={board.id} primaryText={`${board.name}`} />));
         return(
             <div>
-                <DropDownMenu maxHeight={300} value={this.state.value} onChange={this.handleChange}>
-                    <MenuItem value="Header Board" primaryText="Choose a Board" />
-                    <MenuItem value="Board Title 1" primaryText="Beauty" />
-                    <MenuItem value="Board Title 2" primaryText="Travel" />
-                    <MenuItem value="Board Title 3" primaryText="Food" />
-                    <MenuItem value="Board Title 4" primaryText="DIY" />
-                    <MenuItem value="Board Title 5" primaryText="Home Decor" />
-                    <MenuItem value="Board Title 6" primaryText="Misc" />
-                    <MenuItem value="Board Title 7" primaryText="Love" />
+                <DropDownMenu maxHeight={300} value={this.state.selectedBoardId} onChange={this.handleChange}>
+                    {menuItems}
                 </DropDownMenu>
             </div>
         )
@@ -49,3 +67,8 @@ class ChooseABoard extends React.Component{
 }
 
 export default ChooseABoard;
+// export default createContainer(() => {
+//     Meteor.user();
+// }, ChooseABoard);
+
+{/*boards.push(<MenuItem boards={boards.name}/>*/}
