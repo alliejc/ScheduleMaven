@@ -9,13 +9,13 @@ MaterialUiPlugin();
 
 export const MainLayout = ({header, subheader, content, footer}) => (
     <MuiThemeProvider>
-    <div className="section grey lighten-5 ">
+        <div className="section grey lighten-5 ">
 
-        {header}
-        {subheader}
+            {header}
+            {subheader}
             {content}
-        {footer}
+            {footer}
 
-    </div>
+        </div>
     </MuiThemeProvider>
 );

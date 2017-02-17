@@ -1,6 +1,34 @@
 import { Meteor } from 'meteor/meteor';
 import '../imports/collections/CardData';
+import { ServiceConfiguration } from 'meteor/service-configuration';
+import httpProxy from 'http-proxy';
+import http from 'http';
 
-Meteor.startup(() => {
-  // code to run on server at startup
+
+Meteor.startup(function() {
+console.log("startup");
+    httpProxy.createServer({
+        target: {
+            host: 'localhost',
+            port: 3000
+        },
+        ws: true,
+        ssl: {
+            key: Assets.getText("server.key"),
+            cert: Assets.getText("server.crt"),
+            ca: Assets.getText("server.csr")
+        }
+    }).listen(3001);
+
+    console.log(Meteor.settings.clientId);
+    console.log(Meteor.settings.secret);
+    ServiceConfiguration.configurations.upsert({
+        service: 'pinterest'
+    }, {
+        service: 'pinterest',
+        scope: 'read_public', // optional
+        clientId: Meteor.settings.clientId,
+        secret: Meteor.settings.secret
+    });
 });
+
