@@ -3,6 +3,7 @@ import {Toolbar, ToolbarGroup, ToolbarTitle, TextField, Drawer, AppBar, RaisedBu
 import ChooseABoard from '/client/components/chooseaboard';
 import Schedule from './schedule';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
+import Content from '/client/components/content';
 
 // Todo: dynamically fill options with user pinterest boards
 //Source of Truth for isOpen
@@ -12,13 +13,41 @@ class SubHeader extends React.Component {
         super(props);
         this.state = {
             value: 1,
-            boardChoice: 1,
+            selectedBoardId: '',
             open: true,
+            pinObjects: []
         };
     }
 
+    getBoardPins = (selectedBoardId) => {
+        this.setState({selectedBoardId: selectedBoardId});
+        console.log(selectedBoardId);
+
+        let boardSpec = '';
+        let slashCounter = 0;
+
+        for(let i = 0; i < selectedBoardId.length; i++){
+            if(selectedBoardId[i] === '/'){
+                slashCounter++
+            }
+            if(slashCounter >= 3){
+                boardSpec = boardSpec + selectedBoardId[i];
+        }
+    }
+
+        Meteor.call('getBoardPins', boardSpec, (err, result) => {
+            this.setState({pinObjects: result});
+
+            console.log("err " + err);
+            console.log("will mount " + result);
+        })
+
+    };
+
+
     handleToggle = () => {
         this.setState({open: !this.state.open});
+
         if (this.props.onChange) {
             this.props.onChange({open: !this.state.open});
         }
@@ -26,12 +55,12 @@ class SubHeader extends React.Component {
     };
 
     render(){
-        return (
+        return(
             <div>
             <Toolbar>
                 <ToolbarGroup className="container">
                     <ToolbarTitle text="Board Title"/>
-                    <ChooseABoard onChange={(item) => this.setBoard(item)}/>
+                    <ChooseABoard onChange={(selectedBoardId) => this.getBoardPins(selectedBoardId)}/>
                     <TextField hintText="Enter URL"/>
                     <RaisedButton label="See Schedule" onTouchTap={this.handleToggle}/>
                 </ToolbarGroup>
@@ -46,6 +75,7 @@ class SubHeader extends React.Component {
                     />
                     <Schedule />
                 </Drawer>
+                <Content pinObjects={this.state.pinObjects} />
             </div>
 
         );

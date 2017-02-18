@@ -28,31 +28,15 @@ const CardDataSchema = new SimpleSchema({
         type: Number,
         optional: true,
     },
-    date: {
+    destinationBoardLink: {
         type: String,
         optional: true,
     },
-    img: {
+    destinationBoardTitle: {
         type: String,
-        optional: true,
-    },
-    boardChoiceLink: {
-        type: String,
-        optional: true,
-    },
-    boardChoiceTitle: {
-        type: String,
-        optional: true,
-    },
-    pinId: {
-        type: Number,
         optional: true,
     },
     pinNote: {
-        type: String,
-        optional: true,
-    },
-    originalPinLink: {
         type: String,
         optional: true,
     },

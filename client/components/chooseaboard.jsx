@@ -9,19 +9,14 @@ class ChooseABoard extends React.Component{
 
         this.state = {
             boards: [],
-            selectedBoardId: '',
+            selectedBoardId: 0,
         };
     }
 
     componentWillMount() {
 
-        console.log("componentWillMount");
-
         Meteor.call('getBoards', (err, result) => {
             this.setState({boards: result});
-
-            console.log("err " + err);
-            console.log("will mount " + result);
         });
 
     };
@@ -55,10 +50,11 @@ class ChooseABoard extends React.Component{
 
     render(){
         const menuItems = this.state.boards
-            .map(board => (<MenuItem value={board.url} key={board.id} primaryText={`${board.name}`} />));
+            .map(board => (<MenuItem value={board.url} key={board.url} primaryText={`${board.name}`}/>));
         return(
             <div>
                 <DropDownMenu maxHeight={300} value={this.state.selectedBoardId} onChange={this.handleChange}>
+                    <MenuItem value={0} label="Choose a Board" primaryText="Choose a Board" disabled={true} />
                     {menuItems}
                 </DropDownMenu>
             </div>
@@ -70,5 +66,3 @@ export default ChooseABoard;
 // export default createContainer(() => {
 //     Meteor.user();
 // }, ChooseABoard);
-
-{/*boards.push(<MenuItem boards={boards.name}/>*/}
