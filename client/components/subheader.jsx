@@ -68,7 +68,7 @@ class SubHeader extends React.Component {
     };
 
     render() {
-        if (this.state.pinObjects != null) {
+        if (this.state.pinObjects != null){
             return (
                 <div>
                     <Toolbar>
@@ -92,7 +92,8 @@ class SubHeader extends React.Component {
                 </div>
             )
         } else {
-            return <div></div>
+            return <div className="row"></div>
+
         }
     }
 }

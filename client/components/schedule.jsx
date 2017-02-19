@@ -4,32 +4,57 @@ import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 import CardData from '../../imports/collections/CardData';
 import {createContainer} from 'meteor/react-meteor-data';
-import {Dialog, FlatButton } from 'material-ui';
+import {Dialog, FlatButton} from 'material-ui';
 
 BigCalendar.momentLocalizer(moment);
 
-const customContentStyle = {
-    width: '100%',
-    maxWidth: 'none',
-    image: '/img/card_placeholder.jpg',
+const styles = {
+    dialogRoot: {
+        paddingTop: '0',
+        marginTop: '-65px',
+        bottom: '0',
+        overflow: 'scroll',
+    },
+    dialogContent: {
+        width: '100%',
+        maxHeight: '100%',
+    },
+    dialogBody: {
+        maxHeight: '100%',
+    }
 };
 
 class Schedule extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dialogOpen: false,
-        };
-    }
+    state = {
+        dialogOpen: false,
+        board: "",
+        image: "",
+        note: "",
+        link: ""
+    };
 
     handleSelectEvent = (event) => {
 
-        console.log("Select event: " + {event});
+        console.log("Select event: " + event);
+
+        this.setState({board: event.board});
+        this.setState({image: event.image_url});
+        this.setState({note: event.note});
+        this.setState({link: event.link});
+
         this.setState({dialogOpen: true});
         if (this.props.onChange) {
             this.props.onChange({dialogOpen: true});
-        }
 
+        }
+        console.log(this.state.board);
+        console.log(this.state.image);
+        console.log(this.state.note);
+
+    };
+
+
+    pinToPinterest = (event) => {
         console.log(event);
 
         Meteor.call('postPin', event.board, event.note, event.link, event.image_url, (err, result) => {
@@ -37,7 +62,7 @@ class Schedule extends React.Component {
             console.log("err " + err);
             console.log("postPin" + result);
         });
-};
+    };
 
     handleClose = () => {
         this.setState({dialogOpen: false});
@@ -79,10 +104,19 @@ class Schedule extends React.Component {
                     />
                 </div>
                 <Dialog
+                    repositionOnUpdate={false}
+                    autoDetectWindowHeight={false}
+                    autoScrollBodyContent={false}
                     actions={actions}
-                    modal={true}
-                    open={this.state.dialogOpen}
-                    contentStyle={customContentStyle}>
+                    title={this.state.board}
+                    modal={false}
+                    onRequestClose={this.handleClose}
+                    contentStyle={styles.dialogContent}
+                    bodyStyle={styles.dialogBody}
+                    style={styles.dialogRoot}
+                    open={this.state.dialogOpen}>
+                    <span>{this.state.note}</span>
+                    <img src={this.state.image}/>
                 </Dialog>
             </div>
         )

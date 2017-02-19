@@ -100,7 +100,7 @@ class CardItem extends React.Component {
                                 <CardMedia>
                                     <img src={this.props.pin.image.original.url}/>
                                 </CardMedia>
-                                <CardTitle title={this.props.pin.metadata.name}/>
+                                <CardTitle title={this.props.pin.metadata.name} subtitle={this.props.pin.original_link}/>
                                 <CardText> {this.props.pin.note} </CardText>
                                 <CardActions>
                                     <ChooseABoard onChange={(selectedBoardUrl) => this.setBoard(selectedBoardUrl)}/>
