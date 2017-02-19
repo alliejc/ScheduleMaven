@@ -6,6 +6,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import Content from '/client/components/content';
 import WebViewContent from '/client/components/webviewcontent';
 import CardData from '/imports/collections/CardData';
+import Welcome from '/client/components/welcome';
 
 // Todo: dynamically fill options with user pinterest boards
 //Source of Truth for isOpen
@@ -68,7 +69,7 @@ class SubHeader extends React.Component {
     };
 
     render() {
-        if (this.state.pinObjects != null){
+        if (this.state.pinObjects === 0){
             return (
                 <div>
                     <Toolbar>
@@ -92,7 +93,28 @@ class SubHeader extends React.Component {
                 </div>
             )
         } else {
-            return <div className="row"></div>
+            return (
+                <div>
+                    <Toolbar>
+                        <ToolbarGroup className="container">
+                            <ChooseABoard onChange={(selectedBoardUrl) => this.getBoardPins(selectedBoardUrl)}/>
+                            <TextField hintText="Enter URL"/>
+                            <RaisedButton label="See Schedule" onTouchTap={this.handleToggle}/>
+                        </ToolbarGroup>
+                    </Toolbar>
+                    <Drawer
+                        width={700}
+                        openSecondary={true}
+                        open={this.state.open}>
+                        <AppBar title="AppBar"
+                                iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+                                onTouchTap={this.handleToggle}
+                        />
+                        <Schedule />
+                    </Drawer>
+                    <Welcome />
+                </div>
+            )
 
         }
     }
