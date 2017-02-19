@@ -54,13 +54,13 @@ class CardItem extends React.Component {
         let boardSpec = '';
         let slashCounter = 0;
 
-        for(let i = 0; i < selectedBoardUrl.length; i++){
+        for(let i = 0; i < selectedBoardUrl.length-2; i++){
             if(selectedBoardUrl[i] === '/'){
                 slashCounter++
             }
             if(slashCounter >= 3){
-                boardSpec = boardSpec + selectedBoardUrl[i];
-                this.setState({board: 'ZoeStone16/travel'});
+                boardSpec = boardSpec + selectedBoardUrl[i+1];
+                this.setState({board: boardSpec});
             }
         }
         console.log("pin to boardspec" + boardSpec);
@@ -77,7 +77,7 @@ class CardItem extends React.Component {
         cardInsertData.board = this.state.board;
         cardInsertData.note = this.props.pin.note;
         cardInsertData.image_url = this.props.pin.image.original.url;
-        cardInsertData.link = this.state.link;
+        cardInsertData.link = this.props.pin.original_link;
 
         cardInsertData.day = this.state.day;
         cardInsertData.month = this.state.month;
