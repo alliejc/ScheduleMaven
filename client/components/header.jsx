@@ -29,6 +29,7 @@ class Header extends React.Component {
     launchPinterestAuth = () => {
         Meteor.loginWithPinterest();
         this.handleClose();
+        console.log("pinterest login");
     };
 
     render() {

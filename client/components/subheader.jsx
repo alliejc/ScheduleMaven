@@ -19,7 +19,7 @@ class SubHeader extends React.Component {
             pinObjects: [],
             selectedBoardTitle: '',
             webViewUrl: '',
-            open: true,
+            open: false,
         };
     }
 
@@ -30,16 +30,17 @@ class SubHeader extends React.Component {
         let boardSpec = '';
         let slashCounter = 0;
 
-        for(let i = 0; i < selectedBoardUrl.length; i++){
-            if(selectedBoardUrl[i] === '/'){
+        for (let i = 0; i < selectedBoardUrl.length; i++) {
+            if (selectedBoardUrl[i] === '/') {
                 slashCounter++
             }
-            if(slashCounter >= 3){
+            if (slashCounter >= 3) {
                 boardSpec = boardSpec + selectedBoardUrl[i];
                 this.setState({pinnedFromBoardSpec: boardSpec});
                 CardData.pinnedFromBoardSpec = this.state.pinnedFromBoardSpec;
+            }
         }
-    }
+        console.log("pinned from boardspec" + boardSpec);
 
         Meteor.call('getBoardPins', boardSpec, (err, result) => {
             this.setState({pinObjects: result});
@@ -66,30 +67,34 @@ class SubHeader extends React.Component {
         }
     };
 
-    render(){
-        return(
-            <div>
-            <Toolbar>
-                <ToolbarGroup className="container">
-                    <ChooseABoard onChange={(selectedBoardUrl) => this.getBoardPins(selectedBoardUrl)}/>
-                    <TextField hintText="Enter URL" />
-                    <RaisedButton label="See Schedule" onTouchTap={this.handleToggle}/>
-                </ToolbarGroup>
-            </Toolbar>
-                <Drawer
-                    width={700}
-                    openSecondary={true}
-                    open={this.state.open}>
-                    <AppBar title="AppBar"
-                            iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-                            onTouchTap={this.handleToggle}
-                    />
-                    <Schedule />
-                </Drawer>
-                <Content pinObjects={this.state.pinObjects} />
-            </div>
-
-        );
+    render() {
+        if (this.state.pinObjects != null) {
+            return (
+                <div>
+                    <Toolbar>
+                        <ToolbarGroup className="container">
+                            <ChooseABoard onChange={(selectedBoardUrl) => this.getBoardPins(selectedBoardUrl)}/>
+                            <TextField hintText="Enter URL"/>
+                            <RaisedButton label="See Schedule" onTouchTap={this.handleToggle}/>
+                        </ToolbarGroup>
+                    </Toolbar>
+                    <Drawer
+                        width={700}
+                        openSecondary={true}
+                        open={this.state.open}>
+                        <AppBar title="AppBar"
+                                iconElementLeft={<IconButton><NavigationClose /></IconButton>}
+                                onTouchTap={this.handleToggle}
+                        />
+                        <Schedule />
+                    </Drawer>
+                    <Content pinObjects={this.state.pinObjects}/>
+                </div>
+            )
+        } else {
+            return <div></div>
+        }
     }
 }
+
 export default SubHeader;

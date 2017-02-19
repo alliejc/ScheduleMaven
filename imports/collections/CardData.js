@@ -40,7 +40,7 @@ const CardDataSchema = new SimpleSchema({
         type: String,
         optional: true,
     },
-    pinToBoardSpec: {
+    board: {
         type: String,
         optional: true,
     },
@@ -48,11 +48,11 @@ const CardDataSchema = new SimpleSchema({
         type: String,
         optional: true,
     },
-    image: {
+    image_url: {
         type: String,
         optional: true,
     },
-    originalLink: {
+    link: {
         type: String,
         optional: true,
     }

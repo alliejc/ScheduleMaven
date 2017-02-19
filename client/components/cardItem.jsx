@@ -15,10 +15,11 @@ class CardItem extends React.Component {
     state = {
 
         //pin
-        image: '',
+        image_url: '',
         note: '',
         selectedBoardUrl: '',
-        pinToBoardSpec: '',
+        board: '',
+        link: 'http://www.material-ui.com/#/components/popover',
 
         //time
         hour: 0,
@@ -59,9 +60,10 @@ class CardItem extends React.Component {
             }
             if(slashCounter >= 3){
                 boardSpec = boardSpec + selectedBoardUrl[i];
-                this.setState({pinToBoardSpec: boardSpec});
+                this.setState({board: 'ZoeStone16/travel'});
             }
         }
+        console.log("pin to boardspec" + boardSpec);
 
         this.setState({selectedBoardUrl: selectedBoardUrl});
         console.log(boardSpec);
@@ -72,10 +74,10 @@ class CardItem extends React.Component {
 
         cardInsertData.destinationBoardTitle = this.state.selectedBoardUrl;
         cardInsertData.destinationBoardLink = this.state.selectedBoardUrl;
-        cardInsertData.pinToBoardSpec = this.state.pinToBoardSpec;
+        cardInsertData.board = this.state.board;
         cardInsertData.note = this.props.pin.note;
-        cardInsertData.image = this.props.pin.image.original.url;
-        cardInsertData.originalLink = 'http://www.material-ui.com/#/components/popover';
+        cardInsertData.image_url = this.props.pin.image.original.url;
+        cardInsertData.link = this.state.link;
 
         cardInsertData.day = this.state.day;
         cardInsertData.month = this.state.month;
@@ -98,7 +100,7 @@ class CardItem extends React.Component {
                                 <CardMedia>
                                     <img src={this.props.pin.image.original.url}/>
                                 </CardMedia>
-                                <CardTitle title={this.props.pin.metadata.name} subtitle={this.props.pin.original_link}/>
+                                <CardTitle title={this.props.pin.metadata.name}/>
                                 <CardText> {this.props.pin.note} </CardText>
                                 <CardActions>
                                     <ChooseABoard onChange={(selectedBoardUrl) => this.setBoard(selectedBoardUrl)}/>

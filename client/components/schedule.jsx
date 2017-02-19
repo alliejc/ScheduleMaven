@@ -23,8 +23,8 @@ class Schedule extends React.Component {
     }
 
     handleSelectEvent = (event) => {
-        console.log("Select event: " + {event});
 
+        console.log("Select event: " + {event});
         this.setState({dialogOpen: true});
         if (this.props.onChange) {
             this.props.onChange({dialogOpen: true});
@@ -32,7 +32,7 @@ class Schedule extends React.Component {
 
         console.log(event);
 
-        Meteor.call('postPin', event.pinToBoardSpec, event.note, event.originalLink, event.image, (err, result) => {
+        Meteor.call('postPin', event.board, event.note, event.link, event.image_url, (err, result) => {
 
             console.log("err " + err);
             console.log("postPin" + result);
@@ -48,11 +48,11 @@ class Schedule extends React.Component {
             .map(event => ({
                 start: new Date(event.year, event.month - 1, event.day, event.hour, event.minutes),
                 end: new Date(event.year, event.month - 1, event.day, event.hour, event.minutes + 15),
-                title: event.pinToBoardSpec + " - " + event.note,
-                pinToBoardSpec: event.pinToBoardSpec,
+                title: event.board + " - " + event.note,
+                board: event.board,
                 note: event.note,
-                originalLink: event.originalLink,
-                image: event.image,
+                link: event.link,
+                image_url: event.image_url,
             }));
 
         const actions = [

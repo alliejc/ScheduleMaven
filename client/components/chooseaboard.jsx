@@ -1,5 +1,5 @@
 import React from 'react';
-import {DropDownMenu, MenuItem, Menu, FlatButton, Popover} from 'material-ui';
+import {DropDownMenu, MenuItem} from 'material-ui';
 
 class ChooseABoard extends React.Component {
 
@@ -13,11 +13,11 @@ class ChooseABoard extends React.Component {
         };
     }
 
-    componentWillMount() {
+    componentDidMount() {
 
-        Meteor.call('getBoards', (err, result) => {
+            Meteor.call('getBoards', (err, result) => {
                 this.setState({boards: result});
-        });
+            });
     };
 
     // onChange: function(event: object, key: number, payload: any) => void
@@ -26,7 +26,7 @@ class ChooseABoard extends React.Component {
 //     payload: The boards prop of the clicked menu item.
     handleChange = (event, key, selectedBoardUrl) => {
 
-        this.setState({ selectedBoardUrl });
+        this.setState({ selectedBoardUrl: selectedBoardUrl });
 
         if (this.props.onChange) {
             this.props.onChange(selectedBoardUrl);

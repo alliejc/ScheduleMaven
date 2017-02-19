@@ -23,7 +23,7 @@ console.log("startup");
         service: 'pinterest'
     }, {
         service: 'pinterest',
-        scope: 'read_public, read_relationships, write_public',
+        scope: 'read_public, read_relationships, write_public, write_relationships',
         clientId: Meteor.settings.clientId,
         secret: Meteor.settings.secret
     });
