@@ -17,11 +17,11 @@ Meteor.methods({
             .then((result) => result.body.data);
     },
 
-    postPin: (board, note, linkTo, image) => {
+    postPin: (board, note, link, image_url) => {
         return request.post('https://api.pinterest.com/v1/pins/')
             .query({
                 access_token: Meteor.user().services.pinterest.accessToken})
-            .send({board: 'board', note: 'note', link: 'linkTo', image_url: 'image'})
+            .send({board: board, note: note, link: link, image_url: image_url})
     },
 
 

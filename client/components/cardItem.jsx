@@ -19,7 +19,7 @@ class CardItem extends React.Component {
         note: '',
         selectedBoardUrl: '',
         board: '',
-        link: 'http://www.material-ui.com/#/components/popover',
+        link: '',
 
         //time
         hour: 0,
