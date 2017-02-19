@@ -4,6 +4,8 @@ import ChooseABoard from '/client/components/chooseaboard';
 import Schedule from './schedule';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import Content from '/client/components/content';
+import WebViewContent from '/client/components/webviewcontent';
+import CardData from '/imports/collections/CardData';
 
 // Todo: dynamically fill options with user pinterest boards
 //Source of Truth for isOpen
@@ -12,26 +14,30 @@ class SubHeader extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: 1,
-            selectedBoardId: '',
+            selectedBoardUrl: '',
+            pinnedFromBoardSpec: '',
+            pinObjects: [],
+            selectedBoardTitle: '',
+            webViewUrl: '',
             open: true,
-            pinObjects: []
         };
     }
 
-    getBoardPins = (selectedBoardId) => {
-        this.setState({selectedBoardId: selectedBoardId});
-        console.log(selectedBoardId);
+    getBoardPins = (selectedBoardUrl) => {
+        this.setState({selectedBoardUrl});
+        console.log("getBoardPins" + selectedBoardUrl);
 
         let boardSpec = '';
         let slashCounter = 0;
 
-        for(let i = 0; i < selectedBoardId.length; i++){
-            if(selectedBoardId[i] === '/'){
+        for(let i = 0; i < selectedBoardUrl.length; i++){
+            if(selectedBoardUrl[i] === '/'){
                 slashCounter++
             }
             if(slashCounter >= 3){
-                boardSpec = boardSpec + selectedBoardId[i];
+                boardSpec = boardSpec + selectedBoardUrl[i];
+                this.setState({pinnedFromBoardSpec: boardSpec});
+                CardData.pinnedFromBoardSpec = this.state.pinnedFromBoardSpec;
         }
     }
 
@@ -39,11 +45,18 @@ class SubHeader extends React.Component {
             this.setState({pinObjects: result});
 
             console.log("err " + err);
-            console.log("will mount " + result);
-        })
-
+            console.log("getBoardPins - Call" + result);
+        });
     };
 
+    // handleUrl = (webViewUrl) => {
+    //     this.setState({webViewUrl: webViewUrl});
+    //
+    //     if (this.props.onChange) {
+    //         this.props.onChange({webViewUrl});
+    //     }
+    //     console.log(this.state.open);
+    // };
 
     handleToggle = () => {
         this.setState({open: !this.state.open});
@@ -51,7 +64,6 @@ class SubHeader extends React.Component {
         if (this.props.onChange) {
             this.props.onChange({open: !this.state.open});
         }
-        console.log(this.state.open);
     };
 
     render(){
@@ -59,9 +71,8 @@ class SubHeader extends React.Component {
             <div>
             <Toolbar>
                 <ToolbarGroup className="container">
-                    <ToolbarTitle text="Board Title"/>
-                    <ChooseABoard onChange={(selectedBoardId) => this.getBoardPins(selectedBoardId)}/>
-                    <TextField hintText="Enter URL"/>
+                    <ChooseABoard onChange={(selectedBoardUrl) => this.getBoardPins(selectedBoardUrl)}/>
+                    <TextField hintText="Enter URL" />
                     <RaisedButton label="See Schedule" onTouchTap={this.handleToggle}/>
                 </ToolbarGroup>
             </Toolbar>

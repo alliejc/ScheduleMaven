@@ -14,12 +14,10 @@ class Content extends React.Component {
 
             return (
                 <div>
-                    <div className="row grey lighten-5 ">
-                        <div className="grey lighten-5">
+                    <div className="grey lighten-5 ">
                             {pins}
                         </div>
                     </div>
-                </div>
 
             );
         } else {

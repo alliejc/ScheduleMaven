@@ -36,10 +36,26 @@ const CardDataSchema = new SimpleSchema({
         type: String,
         optional: true,
     },
-    pinNote: {
+    pinnedFromBoardSpec: {
         type: String,
         optional: true,
     },
+    pinToBoardSpec: {
+        type: String,
+        optional: true,
+    },
+    note: {
+        type: String,
+        optional: true,
+    },
+    image: {
+        type: String,
+        optional: true,
+    },
+    originalLink: {
+        type: String,
+        optional: true,
+    }
 });
 
 CardData.attachSchema(CardDataSchema);
