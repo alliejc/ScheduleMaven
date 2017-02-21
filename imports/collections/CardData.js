@@ -1,10 +1,10 @@
-import { Mongo } from 'meteor/mongo';
+import {Mongo} from 'meteor/mongo';
 import SimpleSchema from 'simpl-schema';
 
 const CardData = new Mongo.Collection('carddata');
 
 const CardDataSchema = new SimpleSchema({
-    hour: {
+    hours: {
         type: Number,
         optional: true,
     },
@@ -26,6 +26,14 @@ const CardDataSchema = new SimpleSchema({
     },
     year: {
         type: Number,
+        optional: true,
+    },
+    momentDateTime: {
+      type: String,
+        optional: true,
+    },
+    processed: {
+        type: Boolean,
         optional: true,
     },
     destinationBoardLink: {

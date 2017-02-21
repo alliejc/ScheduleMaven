@@ -4,13 +4,16 @@ import TimePicker from '/client/components/timepicker';
 import ChooseABoard from '/client/components/chooseaboard';
 import {FlatButton, Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/';
 import CardData from '/imports/collections/CardData';
+import BigCalendar from 'react-big-calendar';
+import moment from 'moment';
 
+BigCalendar.setLocalizer(
+    BigCalendar.momentLocalizer(moment));
 
 // Todo: Replace card image, title, and description with info from Pinterest card
 //Todo: find out why metadata.name is not working
 
 class CardItem extends React.Component {
-
 
     state = {
 
@@ -22,25 +25,28 @@ class CardItem extends React.Component {
         link: '',
 
         //time
-        hour: 0,
+        hours: 0,
         minutes: 0,
         ampm: '',
+        time: 0,
 
         //date
         day: 0,
         month: 0,
         year: 0,
+        date: 0,
     };
 
-    setTime = (hour, minutes) => {
-        if (hour < 12) {
+    setTime = (hours, minutes) => {
+
+        if (hours < 12) {
             this.setState({ampm: "am"});
         } else {
             this.setState({ampm: "pm"});
         }
 
         this.setState({minutes: minutes});
-        this.setState({hour: hour});
+        this.setState({hours: hours});
 
     };
 
@@ -50,23 +56,27 @@ class CardItem extends React.Component {
         this.setState({year: year});
     };
 
+
     setBoard = (selectedBoardUrl) => {
-        let boardSpec = '';
-        let slashCounter = 0;
 
-        for(let i = 0; i < selectedBoardUrl.length-2; i++){
-            if(selectedBoardUrl[i] === '/'){
-                slashCounter++
+        if(selectedBoardUrl != null) {
+            let boardSpec = '';
+            let slashCounter = 0;
+
+            for (let i = 0; i < selectedBoardUrl.length - 2; i++) {
+                if (selectedBoardUrl[i] === '/') {
+                    slashCounter++
+                }
+                if (slashCounter >= 3) {
+                    boardSpec = boardSpec + selectedBoardUrl[i + 1];
+                    this.setState({board: boardSpec});
+                }
             }
-            if(slashCounter >= 3){
-                boardSpec = boardSpec + selectedBoardUrl[i+1];
-                this.setState({board: boardSpec});
-            }
+            console.log("pin to boardspec" + boardSpec);
+
+            this.setState({selectedBoardUrl: selectedBoardUrl});
+            console.log(boardSpec);
         }
-        console.log("pin to boardspec" + boardSpec);
-
-        this.setState({selectedBoardUrl: selectedBoardUrl});
-        console.log(boardSpec);
     };
 
     handleOnClickSubmit = () => {
@@ -83,9 +93,11 @@ class CardItem extends React.Component {
         cardInsertData.month = this.state.month;
         cardInsertData.year = this.state.year;
 
-        cardInsertData.hour = this.state.hour;
+        cardInsertData.hours = this.state.hours;
         cardInsertData.minutes = this.state.minutes;
         cardInsertData.ampm = this.state.ampm;
+
+        cardInsertData.momentDateTime = moment(new Date(this.state.year, this.state.month - 1, this.state.day, this.state.hours, this.state.minutes)).format('DD-MM-YYYY HH:mm');
 
         CardData.insert(cardInsertData);
     };
@@ -104,7 +116,7 @@ class CardItem extends React.Component {
                                 <CardText> {this.props.pin.note} </CardText>
                                 <CardActions>
                                     <ChooseABoard onChange={(selectedBoardUrl) => this.setBoard(selectedBoardUrl)}/>
-                                    <TimePicker onChange={(hour, minutes) => this.setTime(hour, minutes)}/>
+                                    <TimePicker onChange={(hours, minutes) => this.setTime(hours, minutes)}/>
                                     <Calendar onChange={(day, month, year) => this.setDate(day, month, year)}
                                               day={this.state.date}/>
                                     <FlatButton label="Submit" primary={true}
@@ -115,7 +127,7 @@ class CardItem extends React.Component {
                     </div>
                 </div>
             );
-        } else return (<div/>)
+        } else return <div></div>
     }
 }
 

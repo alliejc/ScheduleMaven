@@ -69,7 +69,7 @@ class SubHeader extends React.Component {
     };
 
     render() {
-        if (this.state.pinObjects === 0){
+        if (this.state.pinObjects != null){
             return (
                 <div>
                     <Toolbar>

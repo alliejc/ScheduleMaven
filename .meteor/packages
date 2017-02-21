@@ -30,3 +30,4 @@ treecom:accounts-pinterest
 service-configuration
 tarang:ssl
 force-ssl
+percolate:synced-cron

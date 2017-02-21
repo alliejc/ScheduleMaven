@@ -8,6 +8,7 @@ import {Dialog, FlatButton} from 'material-ui';
 
 BigCalendar.momentLocalizer(moment);
 
+
 const styles = {
     dialogRoot: {
         paddingTop: '0',
@@ -47,22 +48,17 @@ class Schedule extends React.Component {
             this.props.onChange({dialogOpen: true});
 
         }
-        console.log(this.state.board);
-        console.log(this.state.image);
-        console.log(this.state.note);
-
     };
 
-
-    pinToPinterest = (event) => {
-        console.log(event);
-
-        Meteor.call('postPin', event.board, event.note, event.link, event.image_url, (err, result) => {
-
-            console.log("err " + err);
-            console.log("postPin" + result);
-        });
-    };
+    // pinToPinterest = (event) => {
+    //     console.log(event);
+    //
+    //     Meteor.call('postPin', event.board, event.note, event.link, event.image_url, (err, result) => {
+    //
+    //         console.log("err " + err);
+    //         console.log("postPin" + result);
+    //     });
+    // };
 
     handleClose = () => {
         this.setState({dialogOpen: false});
@@ -71,8 +67,8 @@ class Schedule extends React.Component {
     render() {
         events = this.props.scheduledItems
             .map(event => ({
-                start: new Date(event.year, event.month - 1, event.day, event.hour, event.minutes),
-                end: new Date(event.year, event.month - 1, event.day, event.hour, event.minutes + 15),
+                start: new Date(event.year, event.month - 1, event.day, event.hours, event.minutes),
+                end: new Date(event.year, event.month - 1, event.day, event.hours, event.minutes + 15),
                 title: event.board + " - " + event.note,
                 board: event.board,
                 note: event.note,
