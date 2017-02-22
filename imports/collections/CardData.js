@@ -28,8 +28,12 @@ const CardDataSchema = new SimpleSchema({
         type: Number,
         optional: true,
     },
+    userId: {
+        type: String,
+        optional: true,
+    },
     momentDateTime: {
-      type: String,
+      type: Date,
         optional: true,
     },
     processed: {
