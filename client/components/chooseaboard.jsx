@@ -58,7 +58,9 @@ class ChooseABoard extends React.Component {
         } else {
             return(
             <div>
-                <MenuItem value={1} key={1} primaryText="Hello" onChange={this.loadNull}/>
+                <DropDownMenu maxHeight={300} value={this.state.selectedBoardUrl} onChange={this.handleChange()}>
+                <MenuItem value={board.url} key={board.url} primaryText="Board Choice"/>
+                </DropDownMenu>
             </div>
             )
         }

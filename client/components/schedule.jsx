@@ -50,16 +50,6 @@ class Schedule extends React.Component {
         }
     };
 
-    // pinToPinterest = (event) => {
-    //     console.log(event);
-    //
-    //     Meteor.call('postPin', event.board, event.note, event.link, event.image_url, (err, result) => {
-    //
-    //         console.log("err " + err);
-    //         console.log("postPin" + result);
-    //     });
-    // };
-
     handleClose = () => {
         this.setState({dialogOpen: false});
     };

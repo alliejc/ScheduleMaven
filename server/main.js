@@ -28,11 +28,11 @@ console.log("startup");
         secret: Meteor.settings.secret
     });
 
-    SyncedCron.add({
-        name: 'Check for scheduled pin events',
-        schedule: parser => parser.text('every 5 minutes'),
-        job: () => Meteor.call('postPin'),
-    });
-    SyncedCron.start();
+    // SyncedCron.add({
+    //     name: 'Check for scheduled pin events',
+    //     schedule: parser => parser.text('every 5 minutes'),
+    //     job: () => Meteor.call('postPin'),
+    // });
+    // SyncedCron.start();
 });
 

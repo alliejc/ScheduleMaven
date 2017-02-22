@@ -108,8 +108,6 @@ class CardItem extends React.Component {
         if (this.props.pin != null) {
             return (
                 <div>
-                    <div className="row">
-                        <div className="row col s4 m3 l2">
                             <Card>
                                 <CardMedia>
                                     <img src={this.props.pin.image.original.url}/>
@@ -126,10 +124,26 @@ class CardItem extends React.Component {
                                 </CardActions>
                             </Card>
                         </div>
-                    </div>
-                </div>
             );
-        } else return <div></div>
+        } else return (
+            <div>
+                <Card>
+                    <CardMedia>
+                        <img src='card_placeholder.png'/>
+                    </CardMedia>
+                    <CardTitle title="Title" subtitle="Subtitle"/>
+                    <CardText> {this.props.pin.note} </CardText>
+                    <CardActions>
+                        <ChooseABoard onChange={(selectedBoardUrl) => this.setBoard(selectedBoardUrl)}/>
+                        <TimePicker onChange={(hours, minutes) => this.setTime(hours, minutes)}/>
+                        <Calendar onChange={(day, month, year) => this.setDate(day, month, year)}
+                                  day={this.state.date}/>
+                        <FlatButton label="Submit" primary={true}
+                                    onClick={this.handleOnClickSubmit.bind(this)}/>
+                    </CardActions>
+                </Card>
+            </div>
+        )
     }
 }
 
