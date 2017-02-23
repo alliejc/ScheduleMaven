@@ -1,6 +1,13 @@
 import React from 'react';
 import DatePicker from 'material-ui/DatePicker';
 
+const styles = {
+    display: 'flex',
+    flexDirection: 'row wrap',
+    padding: 20,
+    width: '100%'
+};
+
 class DatePickerClass extends React.Component {
     constructor(props) {
         super(props);
@@ -21,7 +28,7 @@ class DatePickerClass extends React.Component {
         this.setState({month: month});
         this.setState({year: year});
 
-        if(this.props.onChange){
+        if (this.props.onChange) {
             this.props.onChange(day, month, year);
         }
 
@@ -29,8 +36,10 @@ class DatePickerClass extends React.Component {
 
     render() {
         return (
-            <DatePicker hintText="Pick a Date"
-                        onChange={this.handleChange}/>
+            <DatePicker
+                style={styles}
+                hintText="Pick a Date"
+                onChange={this.handleChange}/>
         );
     }
 }

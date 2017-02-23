@@ -1,5 +1,5 @@
 import React from 'react';
-import {DropDownMenu, MenuItem} from 'material-ui';
+import {DropDownMenu, MenuItem, RaisedButton} from 'material-ui';
 
 class ChooseABoard extends React.Component {
 
@@ -36,14 +36,6 @@ class ChooseABoard extends React.Component {
         }
     };
 
-    loadNull = () => {
-
-        if(this.props.onChange) {
-            this.props.onChange(null);
-            console.log("handleChange boards" + null);
-        }
-    }
-
     render() {
         if(this.state.boards != null) {
             const menuItems = this.state.boards
@@ -58,9 +50,7 @@ class ChooseABoard extends React.Component {
         } else {
             return(
             <div>
-                <DropDownMenu maxHeight={300} value={this.state.selectedBoardUrl} onChange={this.handleChange()}>
-                <MenuItem value={board.url} key={board.url} primaryText="Board Choice"/>
-                </DropDownMenu>
+                <MenuItem value={1} key={1} primaryText="Hello"/>
             </div>
             )
         }

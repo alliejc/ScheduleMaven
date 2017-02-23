@@ -2,13 +2,21 @@ import React from 'react';
 import Calendar from '/client/components/datepicker';
 import TimePicker from '/client/components/timepicker';
 import ChooseABoard from '/client/components/chooseaboard';
-import {FlatButton, Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/';
+import {FlatButton, Card, CardActions, CardHeader, CardMedia, CardTitle, CardText, GridList} from 'material-ui/';
 import CardData from '/imports/collections/CardData';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
 
 BigCalendar.setLocalizer(
     BigCalendar.momentLocalizer(moment));
+
+const styles = {
+    display: 'flex',
+    flexDirection: 'row wrap',
+    padding: 20,
+    width: '100%',
+    textOverflow: 'ellipsis',
+};
 
 // Todo: Replace card image, title, and description with info from Pinterest card
 //Todo: find out why metadata.name is not working
@@ -59,7 +67,9 @@ class CardItem extends React.Component {
 
     setBoard = (selectedBoardUrl) => {
 
-        if(selectedBoardUrl != null) {
+        console.log(selectedBoardUrl);
+
+        if (selectedBoardUrl != null) {
             let boardSpec = '';
             let slashCounter = 0;
 
@@ -108,42 +118,24 @@ class CardItem extends React.Component {
         if (this.props.pin != null) {
             return (
                 <div>
-                            <Card>
-                                <CardMedia>
-                                    <img src={this.props.pin.image.original.url}/>
-                                </CardMedia>
-                                <CardTitle title={this.props.pin.metadata.name} subtitle={this.props.pin.original_link}/>
-                                <CardText> {this.props.pin.note} </CardText>
-                                <CardActions>
-                                    <ChooseABoard onChange={(selectedBoardUrl) => this.setBoard(selectedBoardUrl)}/>
-                                    <TimePicker onChange={(hours, minutes) => this.setTime(hours, minutes)}/>
-                                    <Calendar onChange={(day, month, year) => this.setDate(day, month, year)}
-                                              day={this.state.date}/>
-                                    <FlatButton label="Submit" primary={true}
-                                                onClick={this.handleOnClickSubmit.bind(this)}/>
-                                </CardActions>
-                            </Card>
-                        </div>
+                        <Card>
+                            <CardMedia>
+                                <img src={this.props.pin.image.original.url}/>
+                            </CardMedia>
+                            <CardText style={styles}>{this.props.pin.metadata.name}</CardText>
+                            <CardText style={styles}>{this.props.pin.note}</CardText>
+                            <CardActions>
+                                <ChooseABoard onChange={(selectedBoardUrl) => this.setBoard(selectedBoardUrl)}/>
+                                <TimePicker onChange={(hours, minutes) => this.setTime(hours, minutes)}/>
+                                <Calendar onChange={(day, month, year) => this.setDate(day, month, year)}
+                                          day={this.state.date}/>
+                                <FlatButton label="Submit" primary={true}
+                                            onClick={this.handleOnClickSubmit.bind(this)}/>
+                            </CardActions>
+                        </Card>
+                </div>
             );
-        } else return (
-            <div>
-                <Card>
-                    <CardMedia>
-                        <img src='card_placeholder.png'/>
-                    </CardMedia>
-                    <CardTitle title="Title" subtitle="Subtitle"/>
-                    <CardText> {this.props.pin.note} </CardText>
-                    <CardActions>
-                        <ChooseABoard onChange={(selectedBoardUrl) => this.setBoard(selectedBoardUrl)}/>
-                        <TimePicker onChange={(hours, minutes) => this.setTime(hours, minutes)}/>
-                        <Calendar onChange={(day, month, year) => this.setDate(day, month, year)}
-                                  day={this.state.date}/>
-                        <FlatButton label="Submit" primary={true}
-                                    onClick={this.handleOnClickSubmit.bind(this)}/>
-                    </CardActions>
-                </Card>
-            </div>
-        )
+        } else return <div></div>
     }
 }
 
