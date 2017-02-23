@@ -14,7 +14,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'row wrap',
     padding: 20,
-    width: '100%',
+    width: 'auto%',
     textOverflow: 'ellipsis',
 };
 

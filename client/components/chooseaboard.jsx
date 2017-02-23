@@ -1,5 +1,10 @@
 import React from 'react';
-import {DropDownMenu, MenuItem, RaisedButton} from 'material-ui';
+import {DropDownMenu, MenuItem, RaisedButton, SelectField} from 'material-ui';
+
+const styles = {
+    padding: 20,
+    width: '100%'
+};
 
 class ChooseABoard extends React.Component {
 
@@ -42,9 +47,9 @@ class ChooseABoard extends React.Component {
                 .map(board => (<MenuItem value={board.url} key={board.url} primaryText={`${board.name}`}/>));
             return (
                 <div>
-                    <DropDownMenu maxHeight={300} value={this.state.selectedBoardUrl} onChange={this.handleChange}>
+                    <SelectField fullWidth={true} hintText="Choose a Board" maxHeight={300} value={this.state.selectedBoardUrl} onChange={this.handleChange}>
                         {menuItems}
-                    </DropDownMenu>
+                    </SelectField>
                 </div>
             )
         } else {
