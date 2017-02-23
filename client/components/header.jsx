@@ -45,9 +45,9 @@ class Header extends React.Component {
         return (
             <div>
                 <AppBar
-                    title="Login"
+                    title="Pin Scheduler"
                     showMenuIconButton={false}>
-                    <FlatButton label="Login" onClick={this.handleOnClick.bind(this)}/>
+                    <FlatButton label="Login/Logout" onClick={this.handleOnClick.bind(this)}/>
                 </AppBar>
                 <Dialog
                     actions={actions}

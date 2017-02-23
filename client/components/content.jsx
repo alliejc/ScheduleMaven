@@ -1,10 +1,8 @@
 import React from 'react';
 import CardItem from './cardItem';
 import 'react-pinterest/src/css/pinterest.css';
-import {GridList, GridTile} from 'material-ui/GridList';
-import IconButton from 'material-ui/IconButton';
-import Subheader from 'material-ui/Subheader';
-import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import {GridList} from 'material-ui/GridList';
+
 
 const styles = {
     root: {

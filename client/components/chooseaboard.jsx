@@ -1,10 +1,5 @@
 import React from 'react';
-import {DropDownMenu, MenuItem, RaisedButton, SelectField} from 'material-ui';
-
-const styles = {
-    padding: 20,
-    width: '100%'
-};
+import {MenuItem, SelectField} from 'material-ui';
 
 class ChooseABoard extends React.Component {
 
