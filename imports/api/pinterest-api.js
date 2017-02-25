@@ -1,45 +1,39 @@
 import request from 'superagent-bluebird-promise';
-import CardData from '/imports/collections/CardData';
+import CardData from '../collections/CardData';
 
 Meteor.methods({
-    getBoards: () => {
-        const user = Meteor.user();
-        return request.get('https://api.pinterest.com/v1/me/boards/')
+  getBoards: () => {
+    const user = Meteor.user();
+    return request.get('https://api.pinterest.com/v1/me/boards/')
             .query({
-                access_token: user.services.pinterest.accessToken})
-            .then((result) => result.body.data);
-    },
+              access_token: user.services.pinterest.accessToken })
+            .then(result => result.body.data);
+  },
 
-    getBoardPins: (boardSpec) => {
-        const user = Meteor.user();
-        return request.get(`https://api.pinterest.com/v1/boards${boardSpec}pins/`)
+  getBoardPins: (boardSpec) => {
+    check(boardSpec, String);
+    const user = Meteor.user();
+    return request.get(`https://api.pinterest.com/v1/boards${boardSpec}pins/`)
             .query({
-                access_token: user.services.pinterest.accessToken,
-                fields: 'id,image,metadata,original_link,note'
+              access_token: user.services.pinterest.accessToken,
+              fields: 'id,image,metadata,original_link,note',
             })
-            .then((result) => result.body.data);
-    },
+            .then(result => result.body.data);
+  },
 
-    postPin: () => {
-        let currentTime = new Date();
-        let cardList = CardData.find({$and: [{momentDateTime: {$lte: currentTime}}, {processed: {$ne: true}}]}).fetch();
-        let pinList = cardList.map(item => ({_id:item._id, userId: item.userId, pin:{board: item.board, note: item.note, link: item.link, image_url: item.image_url}}));
+  postPin: () => {
+    const currentTime = new Date();
+    const cardList = CardData.find({ $and: [{ momentDateTime: { $lte: currentTime } }, { processed: { $ne: true } }] }).fetch();
+    const pinList = cardList.map(item => ({ _id: item._id, userId: item.userId, pin: { board: item.board, note: item.note, link: item.link, image_url: item.image_url } }));
 
-        pinList.forEach(pin => {
-            let user = Meteor.users.findOne({_id: pin.userId});
-            console.log(user);
-            return request.post('https://api.pinterest.com/v1/pins/')
+    pinList.forEach((pin) => {
+      const user = Meteor.users.findOne({ _id: pin.userId });
+      console.log(user);
+      return request.post('https://api.pinterest.com/v1/pins/')
                 .query(`access_token=${user.services.pinterest.accessToken}`)
                 .send(pin.pin)
-                .then(Meteor.bindEnvironment(() => CardData.update(pin._id, {$set: {processed:true}})));
-        });
-    },
+                .then(Meteor.bindEnvironment(() => CardData.update(pin._id, { $set: { processed: true } })));
+    });
+  },
 });
-
-
-
-
-
-
-
 

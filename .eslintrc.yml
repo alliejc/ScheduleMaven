@@ -1,0 +1,40 @@
+env:
+  meteor: true
+extends:
+  - airbnb
+  - plugin:meteor/recommended
+plugins:
+  - react
+  - jsx-a11y
+  - import
+  - meteor
+parser: babel-eslint
+parserOptions:
+  allowImportExportEverywhere: true
+  ecmaFeatures:
+    jsx: true
+rules:
+  meteor/no-session: 0
+  react/prop-types: 0
+  react/prefer-stateless-function: 0
+  react/jsx-boolean-value: 1
+  react/jsx-space-before-closing: 0
+  max-len: ["error", 200]
+  no-underscore-dangle: 0
+settings:
+  import/resolver: meteor
+  import/core-modules:
+    - meteor/gadicc:blaze-react-component
+    - meteor/meteor
+    - meteor/service-configuration
+    - meteor/accounts-base
+    - meteor/mongo
+    - meteor/react-meteor-data
+    - meteor/check
+    - meteor/ultimatejs:tracker-react
+    - meteor/session
+    - percolate:synced-cron
+    - meteor/std:accounts-ui
+globals:
+  SyncedCron: true
+  FlowRouter: true
