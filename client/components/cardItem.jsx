@@ -18,9 +18,6 @@ const styles = {
     textOverflow: 'ellipsis',
 };
 
-// Todo: Replace card image, title, and description with info from Pinterest card
-//Todo: find out why metadata.name is not working
-
 class CardItem extends React.Component {
 
     state = {
@@ -118,21 +115,21 @@ class CardItem extends React.Component {
         if (this.props.pin != null) {
             return (
                 <div>
-                        <Card>
-                            <CardMedia>
-                                <img src={this.props.pin.image.original.url}/>
-                            </CardMedia>
-                            <CardText style={styles}>{this.props.pin.metadata.name}</CardText>
-                            <CardText style={styles}>{this.props.pin.note}</CardText>
-                            <CardActions>
-                                <ChooseABoard onChange={(selectedBoardUrl) => this.setBoard(selectedBoardUrl)}/>
-                                <TimePicker onChange={(hours, minutes) => this.setTime(hours, minutes)}/>
-                                <Calendar onChange={(day, month, year) => this.setDate(day, month, year)}
-                                          day={this.state.date}/>
-                                <FlatButton label="Submit" primary={true}
-                                            onClick={this.handleOnClickSubmit.bind(this)}/>
-                            </CardActions>
-                        </Card>
+                    <Card>
+                        <CardMedia>
+                            <img src={this.props.pin.image.original.url}/>
+                        </CardMedia>
+                        <CardText style={styles}>{this.props.pin.metadata.name}</CardText>
+                        <CardText style={styles}>{this.props.pin.note}</CardText>
+                        <CardActions>
+                            <ChooseABoard onChange={(selectedBoardUrl) => this.setBoard(selectedBoardUrl)}/>
+                            <TimePicker onChange={(hours, minutes) => this.setTime(hours, minutes)}/>
+                            <Calendar onChange={(day, month, year) => this.setDate(day, month, year)}
+                                      day={this.state.date}/>
+                            <FlatButton label="Submit" primary={true}
+                                        onClick={this.handleOnClickSubmit.bind(this)}/>
+                        </CardActions>
+                    </Card>
                 </div>
             );
         } else return <div></div>

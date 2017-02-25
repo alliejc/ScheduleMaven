@@ -3,16 +3,18 @@ import CardData from '/imports/collections/CardData';
 
 Meteor.methods({
     getBoards: () => {
+        const user = Meteor.user();
         return request.get('https://api.pinterest.com/v1/me/boards/')
             .query({
-                access_token: Meteor.user().services.pinterest.accessToken})
+                access_token: user.services.pinterest.accessToken})
             .then((result) => result.body.data);
     },
 
     getBoardPins: (boardSpec) => {
+        const user = Meteor.user();
         return request.get(`https://api.pinterest.com/v1/boards${boardSpec}pins/`)
             .query({
-                access_token: Meteor.user().services.pinterest.accessToken,
+                access_token: user.services.pinterest.accessToken,
                 fields: 'id,image,metadata,original_link,note'
             })
             .then((result) => result.body.data);

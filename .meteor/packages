@@ -31,3 +31,5 @@ service-configuration
 tarang:ssl
 force-ssl
 percolate:synced-cron
+accounts-password
+zetoff:accounts-material-ui

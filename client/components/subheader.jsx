@@ -8,8 +8,6 @@ import WebViewContent from '/client/components/webviewcontent';
 import CardData from '/imports/collections/CardData';
 import Welcome from '/client/components/welcome';
 
-// Todo: dynamically fill options with user pinterest boards
-//Source of Truth for isOpen
 
 class SubHeader extends React.Component {
     constructor(props) {

@@ -4,7 +4,7 @@ import { ServiceConfiguration } from 'meteor/service-configuration';
 import httpProxy from 'http-proxy';
 import '../imports/api/pinterest-api';
 
-Meteor.startup(function() {
+Meteor.startup (() => {
 console.log("startup");
     httpProxy.createServer({
         target: {
@@ -19,14 +19,18 @@ console.log("startup");
         }
     }).listen(3001);
 
+    let pinterestConfig = Meteor.settings.pinterest;
     ServiceConfiguration.configurations.upsert({
-        service: 'pinterest'
+        service: "pinterest"
     }, {
-        service: 'pinterest',
-        scope: 'read_public, read_relationships, write_public, write_relationships',
-        clientId: Meteor.settings.clientId,
-        secret: Meteor.settings.secret
+        $set: {
+            service: "pinterest",
+            scope: 'read_public, read_relationships, write_public, write_relationships',
+            clientId: pinterestConfig.clientId,
+            secret: pinterestConfig.secret
+        }
     });
+
 
     // SyncedCron.add({
     //     name: 'Check for scheduled pin events',

@@ -3,7 +3,6 @@ import CardItem from './cardItem';
 import 'react-pinterest/src/css/pinterest.css';
 import {GridList} from 'material-ui/GridList';
 
-
 const styles = {
     root: {
         display: 'flex',
@@ -16,8 +15,8 @@ const styles = {
     },
 };
 
-
 class Content extends React.Component {
+
     render() {
         if (this.props.pinObjects) {
             console.log(this.props.pinObjects);
@@ -37,8 +36,10 @@ class Content extends React.Component {
                         </GridList>
                     </div>
                 </div>
-                    )
-                    }
+            )
+        } else {
+            return <Welcome/>
+        }
     }
 }
 

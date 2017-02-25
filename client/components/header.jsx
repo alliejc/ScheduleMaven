@@ -1,67 +1,45 @@
 import React from 'react';
 import { AppBar, RaisedButton,Toolbar, ToolbarGroup, ToolbarTitle, FlatButton, Dialog, IconButton } from 'material-ui/';
+import {Accounts} from 'meteor/std:accounts-ui';
 
-const dialogStyle = {
-    width: '30%',
-    height: '30%',
-    maxWidth: 'none'
-};
+Accounts.ui.config({
+    loginPath: '/login',
+    passwordSignupFields: "USERNAME_ONLY",
+    onSignedInHook: () => FlowRouter.go('/'),
+    onSignedOutHook: () => FlowRouter.go('/'),
+});
 
 class Header extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             dialogOpen: false,
+            loggedIn: false,
         };
     }
 
-    handleClose = () => {
-        this.setState({dialogOpen: false});
-    };
-
-    handleOnClick = () => {
-        this.setState({dialogOpen: true});
-        if (this.props.onChange) {
-            this.props.onChange({dialogOpen: true});
-        }
-    };
-
-    launchPinterestAuth = () => {
-        Meteor.loginWithPinterest();
-        this.handleClose();
-        console.log("pinterest login");
-    };
-
     render() {
-
-        const actions = [
-            <FlatButton
-                label="Cancel"
-                primary={true}
-                onTouchTap={this.handleClose}
-            />,
-        ];
-
-        return (
+        if (Meteor.user() === null) {
+            return (
             <div>
                 <AppBar
                     title="Pin Scheduler"
                     showMenuIconButton={false}>
-                    <FlatButton label="Login/Logout" onClick={this.handleOnClick.bind(this)}/>
+                    <Accounts.ui.LoginForm />
                 </AppBar>
-                <Dialog
-                    actions={actions}
-                    modal={true}
-                    open={this.state.dialogOpen}
-                    title="Login with Pinterest"
-                    titleStyle={{textAlign: "center"}}
-                    contentStyle={dialogStyle}>
-                <IconButton onClick={this.launchPinterestAuth.bind(this)}>
-                    <img src='/img/Pinterest-badge-144px.png'/>
-                </IconButton>
-                </Dialog>
             </div>
-        )
+            )
+        } else {
+            return (
+                <div>
+                    <AppBar
+                        title="Pin Scheduler"
+                        showMenuIconButton={false}>
+                        <Accounts.ui.LoginForm/>
+                    </AppBar>
+                </div>
+            )
+        }
     }
 }
 

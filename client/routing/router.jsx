@@ -6,6 +6,15 @@ import Header from '/client/components/header.jsx';
 import Footer from '/client/components/footer.jsx';
 import SubHeader from '/client/components/subheader.jsx'
 
+
+FlowRouter.route("/login", {
+    action() {
+        mount(MainLayout, {
+            content: <Accounts.ui.LoginForm />
+        });
+    }
+});
+
 FlowRouter.route("/", {
     action () {
         mount(MainLayout, {

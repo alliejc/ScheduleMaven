@@ -1,5 +1,7 @@
 import React from 'react';
 import {MenuItem, SelectField} from 'material-ui';
+import {createContainer} from 'meteor/react-meteor-data';
+
 
 class ChooseABoard extends React.Component {
 
@@ -14,13 +16,26 @@ class ChooseABoard extends React.Component {
     }
 
     componentDidMount() {
-
         console.log("component did mount");
-            Meteor.call('getBoards', (err, result) => {
-                this.setState({boards: result});
-                console.log(result);
-            });
+        this.getBoardList();
     };
+
+
+    getBoardList = () => {
+        console.log("getBoardList");
+
+        Meteor.call('getBoards', (err, result) => {
+            this.setState({boards: result});
+            console.log(result);
+        });
+    };
+
+    componentWillReceiveProps(nextProps){
+        if (nextProps.user != this.props.user) {
+            console.log("shouldComponentUpdate-true");
+            this.getBoardList();
+        }
+    }
 
     // onChange: function(event: object, key: number, payload: any) => void
 //     event: TouchTap event targeting the menu item that was clicked.
@@ -28,7 +43,7 @@ class ChooseABoard extends React.Component {
 //     payload: The boards prop of the clicked menu item.
     handleChange = (event, key, selectedBoardUrl) => {
 
-        this.setState({ selectedBoardUrl: selectedBoardUrl });
+        this.setState({selectedBoardUrl: selectedBoardUrl});
 
         if (this.props.onChange) {
             this.props.onChange(selectedBoardUrl);
@@ -37,25 +52,21 @@ class ChooseABoard extends React.Component {
     };
 
     render() {
-        if(this.state.boards != null) {
-            const menuItems = this.state.boards
-                .map(board => (<MenuItem value={board.url} key={board.url} primaryText={`${board.name}`}/>));
-            return (
-                <div>
-                    <SelectField fullWidth={true} hintText="Choose a Board" maxHeight={300} value={this.state.selectedBoardUrl} onChange={this.handleChange}>
-                        {menuItems}
-                    </SelectField>
-                </div>
-            )
-        } else {
-            return(
+        const menuItems = this.state.boards
+            .map(board => (<MenuItem value={board.url} key={board.url} primaryText={`${board.name}`}/>));
+        return (
             <div>
-                <MenuItem value={1} key={1} primaryText="Hello"/>
+                <SelectField hintText="Choose a Board" maxHeight={300} value={this.state.selectedBoardUrl}
+                             onChange={this.handleChange}>
+                    {menuItems}
+                </SelectField>
             </div>
-            )
-        }
+        )
     }
 }
 
-export default ChooseABoard;
+export default createContainer(() => ({
+        user: Meteor.user(),
+    }
+), ChooseABoard);
 
