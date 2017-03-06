@@ -4,7 +4,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import ChooseABoard from '../components/chooseaboard.jsx';
 import Schedule from '../components/schedule.jsx';
 import Content from '../components/content.jsx';
-import CardData from '../../imports/collections/CardData';
+import CardData from '../../imports/collections/carddata';
 
 
 class SubHeader extends React.Component {

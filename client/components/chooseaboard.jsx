@@ -16,23 +16,20 @@ class ChooseABoard extends React.Component {
   }
 
   componentDidMount() {
-    console.log('component did mount');
-    this.getBoardList();
+    if (this.props.user) {
+      this.getBoardList();
+    }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.user !== this.props.user) {
-      console.log('shouldComponentUpdate-true');
       this.getBoardList();
     }
   }
 
   getBoardList = () => {
-    console.log('getBoardList');
-
     Meteor.call('getBoards', (err, result) => {
       this.setState({ boards: result });
-      console.log(result);
     });
   };
 
@@ -50,18 +47,23 @@ class ChooseABoard extends React.Component {
   };
 
   render() {
-    const menuItems = this.state.boards
-            .map(board => (<MenuItem value={board.url} key={board.url} primaryText={`${board.name}`} />));
-    return (
-      <div>
-        <SelectField
-          hintText="Choose a Board" maxHeight={300} value={this.state.selectedBoardUrl}
-          onChange={this.handleChange}
-        >
-          {menuItems}
-        </SelectField>
-      </div>
-    );
+    if (this.state.boards) {
+      const menuItems = this.state.boards
+                .map(board => (<MenuItem value={board.url} key={board.url} primaryText={`${board.name}`} />));
+      return (
+        <div>
+          <SelectField
+            hintText="Choose a Board" maxHeight={300} value={this.state.selectedBoardUrl}
+            onChange={this.handleChange}
+          >
+            {menuItems}
+          </SelectField>
+        </div>
+      );
+    }
+    return (<div>
+      <SelectField hintText="Please Login" disabled />
+    </div>);
   }
 }
 

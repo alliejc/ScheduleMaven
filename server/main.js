@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 import httpProxy from 'http-proxy';
-import '../imports/collections/CardData';
+import '../imports/collections/carddata';
 import '../imports/api/pinterest-api';
 
 Meteor.startup(() => {
@@ -19,19 +19,16 @@ Meteor.startup(() => {
     },
   }).listen(3001);
 
-  const pinterestConfig = Meteor.settings.pinterest;
   ServiceConfiguration.configurations.upsert({
     service: 'pinterest',
   }, {
     $set: {
       service: 'pinterest',
       scope: 'read_public, read_relationships, write_public, write_relationships',
-      clientId: pinterestConfig.clientId,
-      secret: pinterestConfig.secret,
+      clientId: Meteor.settings.clientId,
+      secret: Meteor.settings.secret,
     },
   });
-
-
     // SyncedCron.add({
     //     name: 'Check for scheduled pin events',
     //     schedule: parser => parser.text('every 5 minutes'),

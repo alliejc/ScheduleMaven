@@ -3,7 +3,7 @@ import { mount } from 'react-mounter';
 import Header from '../components/header.jsx';
 import Footer from '../components/footer.jsx';
 import SubHeader from '../components/subheader.jsx';
-import MainLayout from '../layouts/mainLayout.jsx';
+import MainLayout from '../layouts/mainlayout.jsx';
 
 
 FlowRouter.route('/login', {

@@ -1,14 +1,14 @@
 import { FlatButton, Card, CardActions, CardMedia, CardText } from 'material-ui/';
 import React from 'react';
-import moment from 'moment';
+import Moment from 'moment';
 import BigCalendar from 'react-big-calendar';
 import Calendar from './datepicker.jsx';
 import TimePicker from './timepicker.jsx';
 import ChooseABoard from './chooseaboard.jsx';
-import CardData from '../../imports/collections/CardData';
+import CardData from '../../imports/collections/carddata';
 
 BigCalendar.setLocalizer(
-    BigCalendar.momentLocalizer(moment));
+    BigCalendar.momentLocalizer(Moment));
 
 const styles = {
   display: 'flex',
@@ -21,7 +21,6 @@ const styles = {
 class CardItem extends React.Component {
 
   state = {
-
         // pin
     image_url: '',
     note: '',
@@ -59,10 +58,7 @@ class CardItem extends React.Component {
     this.setState({ year });
   };
 
-
   setBoard = (selectedBoardUrl) => {
-    console.log(selectedBoardUrl);
-
     if (selectedBoardUrl != null) {
       let boardSpec = '';
       let slashCounter = 0;
@@ -76,10 +72,7 @@ class CardItem extends React.Component {
           this.setState({ board: boardSpec });
         }
       }
-      console.log(`pin to boardspec${boardSpec}`);
-
       this.setState({ selectedBoardUrl });
-      console.log(boardSpec);
     }
   };
 

@@ -1,5 +1,5 @@
 import request from 'superagent-bluebird-promise';
-import CardData from '../collections/CardData';
+import CardData from '../collections/carddata';
 
 Meteor.methods({
   getBoards: () => {
@@ -28,7 +28,6 @@ Meteor.methods({
 
     pinList.forEach((pin) => {
       const user = Meteor.users.findOne({ _id: pin.userId });
-      console.log(user);
       return request.post('https://api.pinterest.com/v1/pins/')
                 .query(`access_token=${user.services.pinterest.accessToken}`)
                 .send(pin.pin)
