@@ -77,13 +77,16 @@ class Schedule extends React.Component {
       <div>
         <div>
           <BigCalendar
-            defaultView="agenda"
+            defaultView="day"
+            defaultDate={new Date()}
+            scrollToTime={new Date()}
+            toolbar
             popup
             step={15}
             events={events}
             startAccessor="start"
             endAccessor="end"
-            style={{ height: 800, width: '100%' }}
+            style={{ height: '100%', width: '100%', padding: '10px', paddingTop: '10px' }}
             selectable
             onSelectEvent={event => this.handleSelectEvent(event)}
           />

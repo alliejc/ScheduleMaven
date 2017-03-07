@@ -2,9 +2,9 @@ import React from 'react';
 import { Toolbar, ToolbarGroup, TextField, Drawer, AppBar, RaisedButton, IconButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import ChooseABoard from '../components/chooseaboard.jsx';
-import Schedule from '../components/schedule.jsx';
 import Content from '../components/content.jsx';
 import CardData from '../../imports/collections/carddata';
+import Schedule from '../components/schedule.jsx';
 
 const styles = {
   padding: '25px',
@@ -72,10 +72,10 @@ class SubHeader extends React.Component {
       return (
         <div>
           <Toolbar>
-            <ToolbarGroup style={styles} firstChild={true}>
+            <ToolbarGroup style={styles} firstChild>
               <ChooseABoard onChange={selectedBoardUrl => this.getBoardPins(selectedBoardUrl)} />
             </ToolbarGroup>
-            <ToolbarGroup style={styles} lastChild={true}>
+            <ToolbarGroup style={styles} lastChild>
               <RaisedButton label="See Schedule" onTouchTap={this.handleToggle} />
             </ToolbarGroup>
           </Toolbar>
@@ -114,7 +114,9 @@ class SubHeader extends React.Component {
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             onTouchTap={this.handleToggle}
           />
-          <Schedule />
+          <div className="container">
+            <Schedule />
+          </div>
         </Drawer>
       </div>
     );

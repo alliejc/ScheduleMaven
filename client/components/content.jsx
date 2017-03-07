@@ -15,7 +15,6 @@ const styles = {
   },
   gridList: {
     height: 'auto',
-    width: '90%',
   },
 };
 
@@ -45,9 +44,20 @@ class Content extends React.Component {
         );
       }
     }
-    return (<div>
-      <Welcome />
-    </div>);
+    return (
+      <div>
+        <div style={styles.root}>
+          <GridList
+            cellHeight="auto"
+            rows={3}
+            cols={4}
+            style={styles.gridList}
+          >
+            <Welcome />
+          </GridList>
+        </div>
+      </div>
+    );
   }
 }
 

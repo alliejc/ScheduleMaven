@@ -4,14 +4,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 MaterialUiPlugin();
 
-const MainLayout = ({ header, subheader, content, footer }) => (
+const MainLayout = ({ header, subheader, content }) => (
   <MuiThemeProvider>
-    <div className="section grey lighten-5 ">
+    <div className="grey lighten-5 ">
 
       {header}
       {subheader}
       {content}
-      {footer}
 
     </div>
   </MuiThemeProvider>

@@ -1,4 +1,4 @@
-import { FlatButton, Card, CardActions, CardMedia, CardText } from 'material-ui/';
+import { FlatButton, Card, CardActions, CardMedia, CardText, CardTitle } from 'material-ui/';
 import React from 'react';
 import Moment from 'moment';
 import BigCalendar from 'react-big-calendar';
@@ -109,8 +109,7 @@ class CardItem extends React.Component {
             <CardMedia>
               <img alt="Pin" src={this.props.pin.image.original.url} />
             </CardMedia>
-            <CardText style={styles}>{this.props.pin.metadata.name}</CardText>
-            <CardText style={styles}>{this.props.pin.note}</CardText>
+            <CardTitle style={styles} title={this.props.pin.metadata.name} subtitle={this.props.pin.note} />
             <CardActions>
               <ChooseABoard onChange={selectedBoardUrl => this.setBoard(selectedBoardUrl)} />
               <TimePicker onChange={(hours, minutes) => this.setTime(hours, minutes)} />

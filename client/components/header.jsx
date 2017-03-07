@@ -4,8 +4,8 @@ import { Accounts } from 'meteor/std:accounts-ui';
 
 Accounts.ui.config({
   loginPath: '/login',
-  // onSignedInHook: () => FlowRouter.go('/'),
-  // onSignedOutHook: () => FlowRouter.go('/'),
+    // onSignedInHook: () => FlowRouter.go('/'),
+    // onSignedOutHook: () => FlowRouter.go('/'),
 });
 
 class Header extends React.Component {
