@@ -2,6 +2,11 @@ import React from 'react';
 import { MenuItem, SelectField } from 'material-ui';
 import { createContainer } from 'meteor/react-meteor-data';
 
+const styles = {
+  display: 'flex',
+  flexDirection: 'row wrap',
+  padding: 20,
+};
 
 class ChooseABoard extends React.Component {
 
@@ -47,7 +52,7 @@ class ChooseABoard extends React.Component {
       const menuItems = this.state.boards
                 .map(board => (<MenuItem value={board.url} key={board.url} primaryText={`${board.name}`} />));
       return (
-        <div>
+        <div style={styles}>
           <SelectField
             hintText="Choose a Board" maxHeight={300} value={this.state.selectedBoardUrl}
             onChange={this.handleChange}

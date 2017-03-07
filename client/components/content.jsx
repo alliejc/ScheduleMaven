@@ -7,6 +7,8 @@ import Welcome from './welcome.jsx';
 
 const styles = {
   root: {
+    height: 'auto',
+    width: 'auto',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',

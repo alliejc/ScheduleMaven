@@ -6,6 +6,9 @@ import Schedule from '../components/schedule.jsx';
 import Content from '../components/content.jsx';
 import CardData from '../../imports/collections/carddata';
 
+const styles = {
+  padding: '25px',
+};
 
 class SubHeader extends React.Component {
   constructor(props) {
@@ -69,9 +72,10 @@ class SubHeader extends React.Component {
       return (
         <div>
           <Toolbar>
-            <ToolbarGroup className="container">
+            <ToolbarGroup style={styles} firstChild={true}>
               <ChooseABoard onChange={selectedBoardUrl => this.getBoardPins(selectedBoardUrl)} />
-              <TextField hintText="Enter URL" />
+            </ToolbarGroup>
+            <ToolbarGroup style={styles} lastChild={true}>
               <RaisedButton label="See Schedule" onTouchTap={this.handleToggle} />
             </ToolbarGroup>
           </Toolbar>

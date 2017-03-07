@@ -1,8 +1,8 @@
 import React from 'react';
 
 const style = {
-  height: 100,
-  width: 100,
+  height: 'auto',
+  width: 'auto',
   margin: 20,
   textAlign: 'center',
   display: 'inline-block',
@@ -10,7 +10,7 @@ const style = {
 
 const PaperExampleSimple = () => (
   <div>
-    <div className="container section" style={style}>
+    <div style={style}>
         PLEASE LOGIN WITH PINTEREST TO START PINNING!
         </div>
   </div>
