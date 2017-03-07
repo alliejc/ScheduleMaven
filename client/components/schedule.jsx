@@ -55,15 +55,15 @@ class Schedule extends React.Component {
 
   render() {
     const events = this.props.scheduledItems
-            .map(event => ({
-              start: new Date(event.year, event.month - 1, event.day, event.hours, event.minutes),
-              end: new Date(event.year, event.month - 1, event.day, event.hours, event.minutes + 15),
-              title: `${event.board} - ${event.note}`,
-              board: event.board,
-              note: event.note,
-              link: event.link,
-              image_url: event.image_url,
-            }));
+          .map(event => ({
+            start: new Date(event.year, event.month - 1, event.day, event.hours, event.minutes),
+            end: new Date(event.year, event.month - 1, event.day, event.hours, event.minutes + 15),
+            title: `${event.board} - ${event.note}`,
+            board: event.board,
+            note: event.note,
+            link: event.link,
+            image_url: event.image_url,
+          }));
 
     const actions = [
       <FlatButton
@@ -111,6 +111,7 @@ class Schedule extends React.Component {
 
 export default createContainer(() => (
   {
-    scheduledItems: CardData.find({}).fetch(),
+    user: Meteor.user(),
+    scheduledItems: CardData.find({ userId: { $eq: Meteor.userId() } }).fetch(),
   }), Schedule);
 

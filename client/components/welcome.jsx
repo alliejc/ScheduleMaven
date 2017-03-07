@@ -11,8 +11,7 @@ const style = {
 const PaperExampleSimple = () => (
   <div>
     <div className="container section" style={style}>
-         HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO HELLO
-            HELLO HELLO HELLO HELLO HELLO HELLO
+        PLEASE LOGIN WITH PINTEREST TO START PINNING!
         </div>
   </div>
 );

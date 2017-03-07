@@ -33,10 +33,6 @@ class ChooseABoard extends React.Component {
     });
   };
 
-    // onChange: function(event: object, key: number, payload: any) => void
-//     event: TouchTap event targeting the menu item that was clicked.
-//     key: The index of the clicked menu item in the children collection.
-//     payload: The boards prop of the clicked menu item.
   handleChange = (event, key, selectedBoardUrl) => {
     this.setState({ selectedBoardUrl });
 
@@ -47,7 +43,7 @@ class ChooseABoard extends React.Component {
   };
 
   render() {
-    if (this.state.boards) {
+    if (this.props.user) {
       const menuItems = this.state.boards
                 .map(board => (<MenuItem value={board.url} key={board.url} primaryText={`${board.name}`} />));
       return (

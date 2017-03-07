@@ -6,6 +6,7 @@ import Calendar from './datepicker.jsx';
 import TimePicker from './timepicker.jsx';
 import ChooseABoard from './chooseaboard.jsx';
 import CardData from '../../imports/collections/carddata';
+import Welcome from './welcome.jsx';
 
 BigCalendar.setLocalizer(
     BigCalendar.momentLocalizer(Moment));
@@ -125,7 +126,12 @@ class CardItem extends React.Component {
           </Card>
         </div>
       );
-    } return <div />;
+    }
+    return (
+      <div>
+        <Welcome />
+      </div>
+    );
   }
 }
 
