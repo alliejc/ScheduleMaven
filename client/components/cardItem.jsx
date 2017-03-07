@@ -96,13 +96,13 @@ class CardItem extends React.Component {
     cardInsertData.ampm = this.state.ampm;
 
     cardInsertData.userId = Meteor.userId();
-    cardInsertData.momentDateTime = new Date(this.state.year, this.state.month - 1, this.state.day, this.state.hours, this.state.minutes);
+    cardInsertData.date = new Date(this.state.year, this.state.month - 1, this.state.day, this.state.hours, this.state.minutes);
     CardData.insert(cardInsertData);
   };
 
 
   render() {
-    if (this.props.pin != null) {
+    if (this.props.pin) {
       return (
         <div>
           <Card>

@@ -32,7 +32,7 @@ const CardDataSchema = new SimpleSchema({
     type: String,
     optional: true,
   },
-  momentDateTime: {
+  date: {
     type: Date,
     optional: true,
   },
