@@ -21,15 +21,15 @@ pipeline:
     when:
       branch: master
 
-#  deploy:
-#    image: peloton/drone-rancher
-#    url: http://rancher.seattleslow.com
-#    access_key: 845E1894659FB1248837
-#    secret_key: ${RANCHER_SECRET_KEY}
-#    service: spot/web
-#    docker_image: peloton/spot:${DRONE_BUILD_NUMBER}
-#    start_first: false
-#    confirm: true
-#    timeout: 180
-#    when:
-#      branch: master
+  deploy:
+    image: peloton/drone-rancher
+    url: http://rancher.seattleslow.com
+    access_key: 8D080072A4397B6FE931
+    secret_key: ${RANCHER_SECRET_KEY}
+    service: schedulemaven/web
+    docker_image: alisonjc/schedulemaven:${DRONE_BUILD_NUMBER}
+    start_first: false
+    confirm: true
+    timeout: 180
+    when:
+      branch: master
