@@ -26,6 +26,7 @@ settings:
   import/core-modules:
     - meteor/gadicc:blaze-react-component
     - meteor/meteor
+    - meteor/kadira:flow-router
     - meteor/service-configuration
     - meteor/accounts-base
     - meteor/mongo
