@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar } from 'material-ui/';
+import { AppBar } from 'material-ui';
 import { Accounts } from 'meteor/std:accounts-ui';
 
 Accounts.ui.config({

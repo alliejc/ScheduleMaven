@@ -1,3 +1,4 @@
+import { Meteor } from 'meteor/meteor';
 import request from 'superagent-bluebird-promise';
 import CardData from '../collections/carddata';
 

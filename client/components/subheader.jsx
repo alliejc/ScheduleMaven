@@ -25,7 +25,6 @@ class SubHeader extends React.Component {
 
   getBoardPins = (selectedBoardUrl) => {
     this.setState({ selectedBoardUrl });
-    console.log(`getBoardPins${selectedBoardUrl}`);
 
     let boardSpec = '';
     let slashCounter = 0;
@@ -40,13 +39,9 @@ class SubHeader extends React.Component {
         CardData.pinnedFromBoardSpec = this.state.pinnedFromBoardSpec;
       }
     }
-    console.log(`pinned from boardspec${boardSpec}`);
 
     Meteor.call('getBoardPins', boardSpec, (err, result) => {
       this.setState({ pinObjects: result });
-
-      console.log(`err ${err}`);
-      console.log(`getBoardPins - Call${result}`);
     });
   };
 
@@ -68,7 +63,7 @@ class SubHeader extends React.Component {
   };
 
   render() {
-    if (this.state.pinObjects != null) {
+    if (this.state.pinObjects !== null) {
       return (
         <div>
           <Toolbar>

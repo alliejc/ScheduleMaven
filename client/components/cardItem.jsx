@@ -1,5 +1,6 @@
-import { FlatButton, Card, CardActions, CardMedia, CardText, CardTitle } from 'material-ui/';
+import { FlatButton, Card, CardActions, CardMedia, CardTitle } from 'material-ui';
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import Moment from 'moment';
 import BigCalendar from 'react-big-calendar';
 import Calendar from './datepicker.jsx';
@@ -60,7 +61,7 @@ class CardItem extends React.Component {
   };
 
   setBoard = (selectedBoardUrl) => {
-    if (selectedBoardUrl != null) {
+    if (selectedBoardUrl !== null) {
       let boardSpec = '';
       let slashCounter = 0;
 
@@ -100,7 +101,6 @@ class CardItem extends React.Component {
     CardData.insert(cardInsertData);
   };
 
-
   render() {
     if (this.props.pin) {
       return (
@@ -109,7 +109,7 @@ class CardItem extends React.Component {
             <CardMedia>
               <img alt="Pin" src={this.props.pin.image.original.url} />
             </CardMedia>
-            <CardTitle style={styles} title={this.props.pin.metadata.name} subtitle={this.props.pin.note} />
+            <CardTitle style={styles} title=" " subtitle={this.props.pin.note} />
             <CardActions>
               <ChooseABoard onChange={selectedBoardUrl => this.setBoard(selectedBoardUrl)} />
               <TimePicker onChange={(hours, minutes) => this.setTime(hours, minutes)} />

@@ -36,8 +36,6 @@ class Schedule extends React.Component {
   };
 
   handleSelectEvent = (event) => {
-    console.log(`Select event: ${event}`);
-
     this.setState({ board: event.board });
     this.setState({ image: event.image_url });
     this.setState({ note: event.note });
@@ -82,11 +80,11 @@ class Schedule extends React.Component {
             scrollToTime={new Date()}
             toolbar
             popup
-            step={15}
+            step={30}
             events={events}
             startAccessor="start"
             endAccessor="end"
-            style={{ height: '100%', width: '100%', padding: '10px', paddingTop: '10px' }}
+            style={{ height: '500px', width: '100%', padding: '10px', paddingTop: '10px' }}
             selectable
             onSelectEvent={event => this.handleSelectEvent(event)}
           />

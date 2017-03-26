@@ -5,7 +5,6 @@ import '../imports/collections/carddata';
 import '../imports/api/pinterest-api';
 
 Meteor.startup(() => {
-  console.log('startup');
   httpProxy.createServer({
     target: {
       host: 'localhost',

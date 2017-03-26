@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { MenuItem, SelectField } from 'material-ui';
 import { createContainer } from 'meteor/react-meteor-data';
 
@@ -43,7 +44,6 @@ class ChooseABoard extends React.Component {
 
     if (this.props.onChange) {
       this.props.onChange(selectedBoardUrl);
-      console.log(`handleChange boards${selectedBoardUrl}`);
     }
   };
 
