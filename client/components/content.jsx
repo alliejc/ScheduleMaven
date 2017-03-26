@@ -1,6 +1,7 @@
 import 'react-pinterest/src/css/pinterest.css';
 import { GridList } from 'material-ui/GridList';
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import CardItem from './cardItem.jsx';
 import Welcome from './welcome.jsx';
@@ -23,7 +24,6 @@ class Content extends React.Component {
   render() {
     if (this.props.user) {
       if (this.props.pinObjects) {
-        console.log(this.props.pinObjects);
         const pins = this.props.pinObjects.map(pin => (
           <CardItem key={pin.id} pin={pin} />
             ));
@@ -50,7 +50,7 @@ class Content extends React.Component {
           <GridList
             cellHeight="auto"
             rows={3}
-            cols={4}
+            cols={2}
             style={styles.gridList}
           >
             <Welcome />

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import { Dialog, FlatButton } from 'material-ui';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
@@ -102,7 +103,8 @@ class Schedule extends React.Component {
           style={styles.dialogRoot}
           open={this.state.dialogOpen}
         >
-          <span>{this.state.note}</span>
+          <p>{this.state.note}</p>
+          <p>{this.state.link}</p>
           <img alt="Calendar Event" src={this.state.image} />
         </Dialog>
       </div>

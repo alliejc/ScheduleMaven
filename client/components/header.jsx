@@ -4,8 +4,7 @@ import { Accounts } from 'meteor/std:accounts-ui';
 
 Accounts.ui.config({
   loginPath: '/login',
-    // onSignedInHook: () => FlowRouter.go('/'),
-    // onSignedOutHook: () => FlowRouter.go('/'),
+  passwordSignupFields: 'USERNAME_ONLY',
 });
 
 class Header extends React.Component {
@@ -14,7 +13,7 @@ class Header extends React.Component {
     return (
       <div>
         <AppBar
-          title="Pin Scheduler"
+          title="Schedule Maven"
           showMenuIconButton={false}
         >
           <Accounts.ui.LoginForm />

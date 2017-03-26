@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { Toolbar, ToolbarGroup, TextField, Drawer, AppBar, RaisedButton, IconButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import ChooseABoard from '../components/chooseaboard.jsx';
@@ -11,21 +12,12 @@ const styles = {
 };
 
 class SubHeader extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedBoardUrl: '',
-      pinnedFromBoardSpec: '',
-      pinObjects: [],
-      selectedBoardTitle: '',
-      webViewUrl: '',
-      open: false,
-    };
-  }
+  state = {
+    pinObjects: [],
+    open: false,
+  };
 
   getBoardPins = (selectedBoardUrl) => {
-    this.setState({ selectedBoardUrl });
-
     let boardSpec = '';
     let slashCounter = 0;
 
@@ -35,8 +27,7 @@ class SubHeader extends React.Component {
       }
       if (slashCounter >= 3) {
         boardSpec += selectedBoardUrl[i];
-        this.setState({ pinnedFromBoardSpec: boardSpec });
-        CardData.pinnedFromBoardSpec = this.state.pinnedFromBoardSpec;
+        CardData.pinnedFromBoardSpec = boardSpec;
       }
     }
 
@@ -44,15 +35,6 @@ class SubHeader extends React.Component {
       this.setState({ pinObjects: result });
     });
   };
-
-    // handleUrl = (webViewUrl) => {
-    //     this.setState({webViewUrl: webViewUrl});
-    //
-    //     if (this.props.onChange) {
-    //         this.props.onChange({webViewUrl});
-    //     }
-    //     console.log(this.state.open);
-    // };
 
   handleToggle = () => {
     this.setState({ open: !this.state.open });

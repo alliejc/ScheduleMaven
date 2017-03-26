@@ -8,24 +8,11 @@ const styles = {
 };
 
 class DatePickerClass extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      day: 0,
-      month: 0,
-      year: 0,
-    };
-  }
 
   handleChange = (event, date) => {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-
-    this.setState({ day });
-    this.setState({ month });
-    this.setState({ year });
 
     if (this.props.onChange) {
       this.props.onChange(day, month, year);

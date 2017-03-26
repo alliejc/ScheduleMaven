@@ -11,15 +11,11 @@ const styles = {
 
 class ChooseABoard extends React.Component {
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      boards: [],
-      selectedBoardUrl: '',
-      open: false,
-    };
-  }
+  state = {
+    boards: [],
+    selectedBoardUrl: '',
+    open: false,
+  };
 
   componentDidMount() {
     if (this.props.user) {
