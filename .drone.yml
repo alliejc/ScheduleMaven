@@ -7,20 +7,19 @@ pipeline:
       - meteor npm run lint
       - meteor build --directory build --allow-superuser
 
-#  publish:
-#    image: plugins/docker
-##    storage_path: /drone/src/github.com/Liffft/spot/images
-#    username: alisonjc
-#    password: ${DOCKER_PASSWORD}
-#    email: alison.jane.c@gmail.com
-#    repo: alliejc/React-Meteor-Pinterest-Scheduler
-#    tag:
-#      - latest
-#      - ${DRONE_BUILD_NUMBER}
-#    file: Dockerfile
-#    insecure: true
-#    when:
-#      branch: master
+  publish:
+    image: plugins/docker
+    username: alisonjc
+    password: ${DOCKER_PASSWORD}
+    email: alison.jane.c@gmail.com
+    repo: alisonjc/schedulemaven
+    tag:
+      - latest
+      - ${DRONE_BUILD_NUMBER}
+    file: Dockerfile
+    insecure: true
+    when:
+      branch: master
 
 #  deploy:
 #    image: peloton/drone-rancher
