@@ -24,7 +24,7 @@ Meteor.methods({
 
   postPin: () => {
     const currentTime = new Date();
-    const cardList = CardData.find({ $and: [{ date: { $lte: currentTime } }, { processed: { $ne: true } }] }).fetch();
+    const cardList = CardData.find({ $and: [{ date: { $lte: currentTime } }, { processed: { $ne: true } }, { board: { $exists: true } }] }).fetch();
     const pinList = cardList.map(item => ({ _id: item._id, userId: item.userId, pin: { board: item.board, note: item.note, link: item.link, image_url: item.image_url } }));
 
     pinList.forEach((pin) => {
