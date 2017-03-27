@@ -1,4 +1,4 @@
-# React-Meteor-Pinterest-Scheduler
+# Schedule Maven
 
 Privacy Policy
 
