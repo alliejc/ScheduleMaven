@@ -84,16 +84,16 @@ class CardItem extends React.Component {
   handleOnClickSubmit = () => {
     const cardInsertData = {};
 
-      cardInsertData.destinationBoardTitle = this.state.selectedBoardUrl;
-      cardInsertData.destinationBoardLink = this.state.selectedBoardUrl;
+    cardInsertData.destinationBoardTitle = this.state.selectedBoardUrl;
+    cardInsertData.destinationBoardLink = this.state.selectedBoardUrl;
     cardInsertData.board = this.state.board;
     cardInsertData.note = this.props.pin.note;
     cardInsertData.image_url = this.props.pin.image.original.url;
     cardInsertData.link = this.props.pin.original_link;
 
-      cardInsertData.day = this.state.day;
-      cardInsertData.month = this.state.month;
-      cardInsertData.year = this.state.year;
+    cardInsertData.day = this.state.day;
+    cardInsertData.month = this.state.month;
+    cardInsertData.year = this.state.year;
 
     cardInsertData.hours = this.state.hours;
     cardInsertData.minutes = this.state.minutes;

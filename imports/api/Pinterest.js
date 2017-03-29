@@ -3,6 +3,7 @@ import request from 'superagent-bluebird-promise';
 import CardData from '../collections/CardData';
 
 Meteor.methods({
+    // TODO: Add Pinterest board pagination
   getBoards: () => {
     const user = Meteor.user();
     return request.get('https://api.pinterest.com/v1/me/boards/')
@@ -11,7 +12,7 @@ Meteor.methods({
             .then(result => result.body.data);
   },
 
-  // TODO: Add Pinterest pagination
+  // TODO: Add Pinterest pin pagination
   getBoardPins: (boardSpec) => {
     check(boardSpec, String);
     const user = Meteor.user();
