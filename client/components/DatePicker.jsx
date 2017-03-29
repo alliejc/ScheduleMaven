@@ -4,7 +4,6 @@ import DatePicker from 'material-ui/DatePicker';
 const styles = {
   display: 'flex',
   flexDirection: 'row wrap',
-  padding: 20,
 };
 
 class DatePickerClass extends React.Component {

@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 import httpProxy from 'http-proxy';
-import '../imports/collections/carddata';
-import '../imports/api/pinterest-api';
+import '../imports/collections/CardData';
+import '../imports/api/Pinterest';
 
 Meteor.startup(() => {
   httpProxy.createServer({

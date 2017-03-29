@@ -2,10 +2,10 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { Toolbar, ToolbarGroup, TextField, Drawer, AppBar, RaisedButton, IconButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import ChooseABoard from '../components/chooseaboard.jsx';
-import Content from '../components/content.jsx';
-import CardData from '../../imports/collections/carddata';
-import Schedule from '../components/schedule.jsx';
+import ChooseABoard from './ChooseBoard.jsx';
+import Content from './Content.jsx';
+import CardData from '../../imports/collections/CardData';
+import Schedule from './Schedule.jsx';
 
 const styles = {
   padding: '25px',

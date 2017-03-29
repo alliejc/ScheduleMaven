@@ -6,10 +6,9 @@ import { createContainer } from 'meteor/react-meteor-data';
 const styles = {
   display: 'flex',
   flexDirection: 'row wrap',
-  padding: 20,
 };
 
-class ChooseABoard extends React.Component {
+class ChooseBoard extends React.Component {
 
   state = {
     boards: [],
@@ -18,7 +17,7 @@ class ChooseABoard extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.user) {
+    if (this.props.user !== null) {
       this.getBoardList();
     }
   }
@@ -67,5 +66,5 @@ class ChooseABoard extends React.Component {
 export default createContainer(() => ({
   user: Meteor.user(),
 }
-), ChooseABoard);
+), ChooseBoard);
 

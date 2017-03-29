@@ -3,21 +3,25 @@ import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import Moment from 'moment';
 import BigCalendar from 'react-big-calendar';
-import Calendar from './datepicker.jsx';
-import TimePicker from './timepicker.jsx';
-import ChooseABoard from './chooseaboard.jsx';
-import CardData from '../../imports/collections/carddata';
-import Welcome from './welcome.jsx';
+import Calendar from './DatePicker.jsx';
+import TimePicker from './TimePicker.jsx';
+import ChooseABoard from './ChooseBoard.jsx';
+import CardData from '../../imports/collections/CardData';
+import Welcome from './Welcome.jsx';
 
 BigCalendar.setLocalizer(
     BigCalendar.momentLocalizer(Moment));
 
 const styles = {
-  display: 'flex',
+  display: 'wrap',
   flexDirection: 'row wrap',
-  padding: 20,
   width: 'auto%',
   textOverflow: 'ellipsis',
+  wordWrap: 'break-word',
+};
+
+const mediaStyles = {
+  padding: '8px',
 };
 
 class CardItem extends React.Component {
@@ -34,7 +38,6 @@ class CardItem extends React.Component {
     hours: 0,
     minutes: 0,
     ampm: '',
-    time: 0,
 
         // date
     day: 0,
@@ -81,16 +84,16 @@ class CardItem extends React.Component {
   handleOnClickSubmit = () => {
     const cardInsertData = {};
 
-    cardInsertData.destinationBoardTitle = this.state.selectedBoardUrl;
-    cardInsertData.destinationBoardLink = this.state.selectedBoardUrl;
+      cardInsertData.destinationBoardTitle = this.state.selectedBoardUrl;
+      cardInsertData.destinationBoardLink = this.state.selectedBoardUrl;
     cardInsertData.board = this.state.board;
     cardInsertData.note = this.props.pin.note;
     cardInsertData.image_url = this.props.pin.image.original.url;
     cardInsertData.link = this.props.pin.original_link;
 
-    cardInsertData.day = this.state.day;
-    cardInsertData.month = this.state.month;
-    cardInsertData.year = this.state.year;
+      cardInsertData.day = this.state.day;
+      cardInsertData.month = this.state.month;
+      cardInsertData.year = this.state.year;
 
     cardInsertData.hours = this.state.hours;
     cardInsertData.minutes = this.state.minutes;
@@ -106,7 +109,7 @@ class CardItem extends React.Component {
       return (
         <div>
           <Card>
-            <CardMedia>
+            <CardMedia style={mediaStyles}>
               <img alt="Pin" src={this.props.pin.image.original.url} />
             </CardMedia>
             <CardTitle style={styles} title=" " subtitle={this.props.pin.note} />

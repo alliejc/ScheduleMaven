@@ -3,8 +3,8 @@ import { GridList } from 'material-ui/GridList';
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
-import CardItem from './cardItem.jsx';
-import Welcome from './welcome.jsx';
+import CardItem from './CardItem.jsx';
+import Welcome from './Welcome.jsx';
 
 const styles = {
   root: {
@@ -12,7 +12,7 @@ const styles = {
     width: 'auto',
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    // justifyContent: 'space-around',
   },
   gridList: {
     height: 'auto',

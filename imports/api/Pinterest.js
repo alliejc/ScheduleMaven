@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import request from 'superagent-bluebird-promise';
-import CardData from '../collections/carddata';
+import CardData from '../collections/CardData';
 
 Meteor.methods({
   getBoards: () => {
@@ -11,6 +11,7 @@ Meteor.methods({
             .then(result => result.body.data);
   },
 
+  // TODO: Add Pinterest pagination
   getBoardPins: (boardSpec) => {
     check(boardSpec, String);
     const user = Meteor.user();
@@ -19,7 +20,8 @@ Meteor.methods({
               access_token: user.services.pinterest.accessToken,
               fields: 'id,image,metadata,original_link,note',
             })
-            .then(result => result.body.data);
+            .then(result => result.body.data)
+            .catch(console.log);
   },
 
   postPin: () => {
@@ -32,7 +34,8 @@ Meteor.methods({
       return request.post('https://api.pinterest.com/v1/pins/')
                 .query(`access_token=${user.services.pinterest.accessToken}`)
                 .send(pin.pin)
-                .then(Meteor.bindEnvironment(() => CardData.update(pin._id, { $set: { processed: true } })));
+                .then(Meteor.bindEnvironment(() => CardData.update(pin._id, { $set: { processed: true } })))
+                .catch(console.log);
     });
   },
 });
