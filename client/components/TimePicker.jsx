@@ -1,26 +1,16 @@
 import React from 'react';
 import TimePicker from 'material-ui/TimePicker';
 
-
 const styles = {
   display: 'flex',
   flexDirection: 'row wrap',
-  padding: 20,
 };
 
-class Timepicker extends React.Component {
-
-  state = {
-    hours: 0,
-    minutes: 0,
-  };
+class TimePickerClass extends React.Component {
 
   handleChangeTimePicker = (event, date) => {
     const hours = date.getHours();
     const minutes = date.getMinutes();
-
-    this.setState({ minutes });
-    this.setState({ hours });
 
     if (this.props.onChange) {
       this.props.onChange(hours, minutes);
@@ -41,4 +31,12 @@ class Timepicker extends React.Component {
   }
 }
 
-export default Timepicker;
+TimePickerClass.defaultProps = {
+  date: new Date(),
+};
+
+TimePickerClass.PropTypes = {
+  date: React.PropTypes.object,
+};
+
+export default TimePickerClass;

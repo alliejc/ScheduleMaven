@@ -1,8 +1,8 @@
 import { Meteor } from 'meteor/meteor';
 import { ServiceConfiguration } from 'meteor/service-configuration';
 import httpProxy from 'http-proxy';
-import '../imports/collections/carddata';
-import '../imports/api/pinterest-api';
+import '../imports/collections/CardData';
+import '../imports/api/Pinterest';
 
 Meteor.startup(() => {
   httpProxy.createServer({
@@ -28,11 +28,11 @@ Meteor.startup(() => {
       secret: Meteor.settings.secret,
     },
   });
-    // SyncedCron.add({
-    //     name: 'Check for scheduled pin events',
-    //     schedule: parser => parser.text('every 5 minutes'),
-    //     job: () => Meteor.call('postPin'),
-    // });
-    // SyncedCron.start();
+  SyncedCron.add({
+    name: 'Check for scheduled pin events',
+    schedule: parser => parser.text('every 30 minutes'),
+    job: () => Meteor.call('postPin'),
+  });
+  SyncedCron.start();
 });
 

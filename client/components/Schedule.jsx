@@ -5,7 +5,7 @@ import { Dialog, FlatButton } from 'material-ui';
 import 'react-big-calendar/lib/css/react-big-calendar.css';
 import BigCalendar from 'react-big-calendar';
 import moment from 'moment';
-import CardData from '../../imports/collections/carddata';
+import CardData from '../../imports/collections/CardData';
 
 
 BigCalendar.momentLocalizer(moment);
