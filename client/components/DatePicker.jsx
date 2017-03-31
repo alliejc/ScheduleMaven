@@ -29,4 +29,12 @@ class DatePickerClass extends React.Component {
   }
 }
 
+DatePickerClass.defaultProps = {
+  date: new Date(),
+};
+
+DatePickerClass.PropTypes = {
+  date: React.PropTypes.object,
+};
+
 export default DatePickerClass;

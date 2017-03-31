@@ -12,10 +12,6 @@ const CardDataSchema = new SimpleSchema({
     type: Number,
     optional: true,
   },
-  ampm: {
-    type: String,
-    optional: true,
-  },
   day: {
     type: Number,
     optional: true,

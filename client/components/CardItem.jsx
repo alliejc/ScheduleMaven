@@ -1,4 +1,4 @@
-import { FlatButton, Card, CardActions, CardMedia, CardTitle } from 'material-ui';
+import { FlatButton, Card, CardActions, CardMedia, CardTitle, CardText } from 'material-ui';
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import Moment from 'moment';
@@ -37,7 +37,6 @@ class CardItem extends React.Component {
         // time
     hours: 0,
     minutes: 0,
-    ampm: '',
 
         // date
     day: 0,
@@ -47,12 +46,6 @@ class CardItem extends React.Component {
   };
 
   setTime = (hours, minutes) => {
-    if (hours < 12) {
-      this.setState({ ampm: 'am' });
-    } else {
-      this.setState({ ampm: 'pm' });
-    }
-
     this.setState({ minutes });
     this.setState({ hours });
   };
@@ -81,7 +74,7 @@ class CardItem extends React.Component {
     }
   };
 
-  handleOnClickSubmit = () => {
+  insertCardData = () => {
     const cardInsertData = {};
 
     cardInsertData.destinationBoardTitle = this.state.selectedBoardUrl;
@@ -97,11 +90,14 @@ class CardItem extends React.Component {
 
     cardInsertData.hours = this.state.hours;
     cardInsertData.minutes = this.state.minutes;
-    cardInsertData.ampm = this.state.ampm;
 
     cardInsertData.userId = Meteor.userId();
     cardInsertData.date = new Date(this.state.year, this.state.month - 1, this.state.day, this.state.hours, this.state.minutes);
     CardData.insert(cardInsertData);
+  };
+
+  handleOnClickSubmit = () => {
+    this.insertCardData();
   };
 
   render() {
@@ -114,7 +110,7 @@ class CardItem extends React.Component {
             </CardMedia>
             <CardTitle style={styles} title=" " subtitle={this.props.pin.note} />
             <CardActions>
-              <ChooseABoard onChange={selectedBoardUrl => this.setBoard(selectedBoardUrl)} />
+              <ChooseABoard onChange={this.setBoard} />
               <TimePicker onChange={(hours, minutes) => this.setTime(hours, minutes)} />
               <Calendar
                 onChange={(day, month, year) => this.setDate(day, month, year)}

@@ -9,7 +9,8 @@ Meteor.methods({
     return request.get('https://api.pinterest.com/v1/me/boards/')
             .query({
               access_token: user.services.pinterest.accessToken })
-            .then(result => result.body.data);
+            .then(result => result.body.data)
+            .catch(console.log);
   },
 
   // TODO: Add Pinterest pin pagination
@@ -19,7 +20,7 @@ Meteor.methods({
     return request.get(`https://api.pinterest.com/v1/boards${boardSpec}pins/`)
             .query({
               access_token: user.services.pinterest.accessToken,
-              fields: 'id,image,metadata,original_link,note',
+              fields: 'id,image,metadata,original_link,note,counts',
             })
             .then(result => result.body.data)
             .catch(console.log);

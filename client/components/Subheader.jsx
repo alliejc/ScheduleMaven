@@ -18,22 +18,24 @@ class SubHeader extends React.Component {
   };
 
   getBoardPins = (selectedBoardUrl) => {
-    let boardSpec = '';
-    let slashCounter = 0;
+    if (selectedBoardUrl !== null) {
+      let boardSpec = '';
+      let slashCounter = 0;
 
-    for (let i = 0; i < selectedBoardUrl.length; i += 1) {
-      if (selectedBoardUrl[i] === '/') {
-        slashCounter += 1;
+      for (let i = 0; i < selectedBoardUrl.length; i += 1) {
+        if (selectedBoardUrl[i] === '/') {
+          slashCounter += 1;
+        }
+        if (slashCounter >= 3) {
+          boardSpec += selectedBoardUrl[i];
+          CardData.pinnedFromBoardSpec = boardSpec;
+        }
       }
-      if (slashCounter >= 3) {
-        boardSpec += selectedBoardUrl[i];
-        CardData.pinnedFromBoardSpec = boardSpec;
-      }
+
+      Meteor.call('getBoardPins', boardSpec, (err, result) => {
+        this.setState({ pinObjects: result });
+      });
     }
-
-    Meteor.call('getBoardPins', boardSpec, (err, result) => {
-      this.setState({ pinObjects: result });
-    });
   };
 
   handleToggle = () => {
@@ -50,7 +52,7 @@ class SubHeader extends React.Component {
         <div>
           <Toolbar>
             <ToolbarGroup style={styles} firstChild>
-              <ChooseABoard onChange={selectedBoardUrl => this.getBoardPins(selectedBoardUrl)} />
+              <ChooseABoard onChange={this.getBoardPins} />
             </ToolbarGroup>
             <ToolbarGroup style={styles} lastChild>
               <RaisedButton label="See Schedule" onTouchTap={this.handleToggle} />
@@ -62,7 +64,7 @@ class SubHeader extends React.Component {
             open={this.state.open}
           >
             <AppBar
-              title="AppBar"
+              title="Schedule"
               iconElementLeft={<IconButton><NavigationClose /></IconButton>}
               onTouchTap={this.handleToggle}
             />
@@ -76,8 +78,7 @@ class SubHeader extends React.Component {
       <div>
         <Toolbar>
           <ToolbarGroup className="container">
-            <ChooseABoard onChange={selectedBoardUrl => this.getBoardPins(selectedBoardUrl)} />
-            <TextField hintText="Enter URL" />
+            <ChooseABoard onChange={this.getBoardPins} />
             <RaisedButton label="See Schedule" onTouchTap={this.handleToggle} />
           </ToolbarGroup>
         </Toolbar>
@@ -87,7 +88,7 @@ class SubHeader extends React.Component {
           open={this.state.open}
         >
           <AppBar
-            title="AppBar"
+            title="Schedule"
             iconElementLeft={<IconButton><NavigationClose /></IconButton>}
             onTouchTap={this.handleToggle}
           />

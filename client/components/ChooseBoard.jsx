@@ -17,7 +17,7 @@ class ChooseBoard extends React.Component {
   };
 
   componentDidMount() {
-    if (this.props.user !== null) {
+    if (this.props.user) {
       this.getBoardList();
     }
   }
@@ -44,18 +44,20 @@ class ChooseBoard extends React.Component {
 
   render() {
     if (this.props.user) {
-      const menuItems = this.state.boards
+      if (this.state.boards) {
+        const menuItems = this.state.boards
                 .map(board => (<MenuItem value={board.url} key={board.url} primaryText={`${board.name}`} />));
-      return (
-        <div style={styles}>
-          <SelectField
-            hintText="Choose a Board" maxHeight={300} value={this.state.selectedBoardUrl}
-            onChange={this.handleChange}
-          >
-            {menuItems}
-          </SelectField>
-        </div>
-      );
+        return (
+          <div style={styles}>
+            <SelectField
+              hintText="Choose a Board" maxHeight={300} value={this.state.selectedBoardUrl}
+              onChange={this.handleChange}
+            >
+              {menuItems}
+            </SelectField>
+          </div>
+        );
+      }
     }
     return (<div>
       <SelectField hintText="Please Login" disabled />
