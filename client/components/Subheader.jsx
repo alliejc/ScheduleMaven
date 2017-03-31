@@ -1,6 +1,6 @@
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
-import { Toolbar, ToolbarGroup, TextField, Drawer, AppBar, RaisedButton, IconButton } from 'material-ui';
+import { Toolbar, ToolbarGroup, Drawer, AppBar, RaisedButton, IconButton } from 'material-ui';
 import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import ChooseABoard from './ChooseBoard.jsx';
 import Content from './Content.jsx';

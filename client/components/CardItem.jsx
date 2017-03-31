@@ -1,4 +1,4 @@
-import { FlatButton, Card, CardActions, CardMedia, CardTitle, CardText } from 'material-ui';
+import { FlatButton, Card, CardActions, CardMedia, CardTitle } from 'material-ui';
 import React from 'react';
 import { Meteor } from 'meteor/meteor';
 import Moment from 'moment';
