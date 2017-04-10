@@ -1,10 +1,11 @@
-import 'react-pinterest/src/css/pinterest.css';
-import { GridList, RaisedButton } from 'material-ui';
+import { RaisedButton } from 'material-ui';
 import React from 'react';
+import StackGrid from 'react-stack-grid';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 import CardItem from './CardItem.jsx';
 import Welcome from './Welcome.jsx';
+import Footer from './Footer.jsx';
 
 const styles = {
   root: {
@@ -56,38 +57,39 @@ class Content extends React.Component {
 
       return (
         <div>
-          <div style={styles.root}>
-            <GridList
-              cellHeight="auto"
-              rows={3}
-              cols={4}
-              style={styles.gridList}
+          <div>
+            <StackGrid
+              columnWidth="25%"
+              monitorImagesLoaded
             >
               {pins}
-            </GridList>
-            <RaisedButton
-              fullWidth
-              style={styles.loadMoreStyle}
-              onTouchTap={this.handleTouchTap}
-            >
-                      Load More
-                    </RaisedButton>
+            </StackGrid>
           </div>
+          <RaisedButton
+            fullWidth
+            style={styles.loadMoreStyle}
+            onTouchTap={this.handleTouchTap}
+          >
+            Load More
+          </RaisedButton>
+          <Footer />
         </div>
       );
     }
     return (
       <div>
-        <div style={styles.root}>
-          <GridList
-            cellHeight="auto"
-            rows={3}
-            cols={2}
-            style={styles.gridList}
+        <div>
+          <StackGrid
+            columnWidth="25%"
+            monitorImagesLoaded
           >
             <Welcome />
-          </GridList>
+            <Welcome />
+            <Welcome />
+            <Welcome />
+          </StackGrid>
         </div>
+        <Footer />
       </div>
     );
   }

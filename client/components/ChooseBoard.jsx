@@ -59,9 +59,10 @@ class ChooseBoard extends React.Component {
         );
       }
     }
-    return (<div>
-      <SelectField hintText="Please Login" disabled />
-    </div>);
+    return (
+      <div style={styles} >
+        <SelectField hintText="Please Login" disabled />
+      </div>);
   }
 }
 
