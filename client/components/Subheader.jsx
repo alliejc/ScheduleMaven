@@ -14,6 +14,7 @@ const styles = {
 class SubHeader extends React.Component {
   state = {
     pinObjects: [],
+    cursorUrl: '',
     open: false,
   };
 
@@ -33,7 +34,8 @@ class SubHeader extends React.Component {
       }
 
       Meteor.call('getBoardPins', boardSpec, (err, result) => {
-        this.setState({ pinObjects: result });
+        this.setState({ pinObjects: result.pinData });
+        this.setState({ cursorUrl: result.nextUrl });
       });
     }
   };
@@ -70,7 +72,7 @@ class SubHeader extends React.Component {
             />
             <Schedule />
           </Drawer>
-          <Content pinObjects={this.state.pinObjects} />
+          <Content pinObjects={this.state.pinObjects} cursorUrl={this.state.cursorUrl} />
         </div>
       );
     }

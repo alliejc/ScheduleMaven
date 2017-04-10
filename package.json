@@ -25,6 +25,7 @@
     "react-dom": "15.4.2",
     "react-mounter": "1.2.0",
     "react-pinterest": "^1.2.0",
+    "react-stack-grid": "^0.2.0",
     "react-tap-event-plugin": "^2.0.1",
     "simpl-schema": "^0.2.0",
     "superagent": "^3.5.2",
