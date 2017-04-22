@@ -5,6 +5,7 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import ChooseABoard from './ChooseBoard.jsx';
 import Content from './Content.jsx';
 import CardData from '../../imports/collections/CardData';
+import ExternalCardData from '../../imports/collections/ExternalCardData';
 import Schedule from './Schedule.jsx';
 
 const styles = {
@@ -40,6 +41,10 @@ class SubHeader extends React.Component {
     }
   };
 
+  getExternalPins = () => {
+    this.setState({ pinObjects: [ExternalCardData.image_url, ExternalCardData.link] });
+  };
+
   handleToggle = () => {
     this.setState({ open: !this.state.open });
 
@@ -49,12 +54,19 @@ class SubHeader extends React.Component {
   };
 
   render() {
+    let content = null;
+    if (this.state.cursorUrl !== null) {
+      content = <Content pinObjects={this.state.pinObjects} cursorUrl={this.state.cursorUrl} />;
+    } else {
+      content = <Content pinObjects={this.state.pinObjects} />;
+    }
     if (this.state.pinObjects !== null) {
       return (
         <div>
           <Toolbar>
             <ToolbarGroup style={styles} firstChild>
               <ChooseABoard onChange={this.getBoardPins} />
+              <RaisedButton label="Display Web Pins" onTouchTap={this.getExternalPins} />
             </ToolbarGroup>
             <ToolbarGroup style={styles} lastChild>
               <RaisedButton label="See Schedule" onTouchTap={this.handleToggle} />
@@ -72,15 +84,18 @@ class SubHeader extends React.Component {
             />
             <Schedule />
           </Drawer>
-          <Content pinObjects={this.state.pinObjects} cursorUrl={this.state.cursorUrl} />
+          {content}
         </div>
       );
     }
     return (
       <div>
         <Toolbar>
-          <ToolbarGroup className="container">
+          <ToolbarGroup style={styles} firstChild>
             <ChooseABoard onChange={this.getBoardPins} />
+            <RaisedButton label="Display Web Pins" onTouchTap={this.getExternalPins} />
+          </ToolbarGroup>
+          <ToolbarGroup style={styles} lastChild>
             <RaisedButton label="See Schedule" onTouchTap={this.handleToggle} />
           </ToolbarGroup>
         </Toolbar>

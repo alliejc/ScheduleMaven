@@ -50,7 +50,7 @@ class Content extends React.Component {
   };
 
   render() {
-    if (this.props.user) {
+    // if (this.props.user) {
       const pins = this.state.pinObjects.map(pin => (
         <CardItem key={pin.id} pin={pin} />
             ));
@@ -76,23 +76,23 @@ class Content extends React.Component {
         </div>
       );
     }
-    return (
-      <div>
-        <div>
-          <StackGrid
-            columnWidth="25%"
-            monitorImagesLoaded
-          >
-            <Welcome />
-            <Welcome />
-            <Welcome />
-            <Welcome />
-          </StackGrid>
-        </div>
-        <Footer />
-      </div>
-    );
-  }
+  //   return (
+  //     <div>
+  //       <div>
+  //         <StackGrid
+  //           columnWidth="25%"
+  //           monitorImagesLoaded
+  //         >
+  //           <Welcome />
+  //           <Welcome />
+  //           <Welcome />
+  //           <Welcome />
+  //         </StackGrid>
+  //       </div>
+  //       <Footer />
+  //     </div>
+  //   );
+  // }
 }
 
 export default createContainer(() => ({
