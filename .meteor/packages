@@ -33,3 +33,4 @@ force-ssl@1.0.14
 percolate:synced-cron
 zetoff:accounts-material-ui
 check@1.2.5
+accounts-password

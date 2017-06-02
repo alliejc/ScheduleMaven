@@ -4,6 +4,7 @@ import httpProxy from 'http-proxy';
 import '../imports/collections/CardData';
 import '../imports/api/Pinterest';
 
+
 Meteor.startup(() => {
   httpProxy.createServer({
     target: {
