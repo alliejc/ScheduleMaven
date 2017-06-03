@@ -12,7 +12,7 @@ const Footer = () => (
   <footer style={style}>
     <div>
       <div>
-                By using this apps you are approving Schedule Maven to pin content on your behalf --
+                By using this website you are approving Schedule Maven to pin content on your behalf --
                 <a href="https://github.com/alliejc/React-Meteor-Pinterest-Scheduler/blob/master/README.md">Privacy Policy</a>
       </div>
     </div>
