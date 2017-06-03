@@ -34,6 +34,18 @@ class ChooseBoard extends React.Component {
     });
   };
 
+  sortList = () => {
+    const nonSortedArray = this.state.boards;
+    const sortedArray = nonSortedArray.sort((a, b) => {
+      const nameA = a.name.toUpperCase();
+      const nameB = b.name.toUpperCase();
+      if (nameA < nameB) return -1;
+      else if (nameA > nameB) return 1;
+      return 0;
+    });
+    return sortedArray;
+  };
+
   handleChange = (event, key, selectedBoardUrl) => {
     this.setState({ selectedBoardUrl });
 
@@ -45,7 +57,7 @@ class ChooseBoard extends React.Component {
   render() {
     if (this.props.user) {
       if (this.state.boards) {
-        const menuItems = this.state.boards
+        const menuItems = this.sortList()
                 .map(board => (<MenuItem value={board.url} key={board.url} primaryText={`${board.name}`} />));
         return (
           <div style={styles}>

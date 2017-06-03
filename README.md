@@ -1,5 +1,8 @@
 # Schedule Maven
 
+Live here:
+https://www.schedulemaven.com
+
 Web application made for faster and easier Pinterest scheduling. built on Meteor with React.js
 
 
