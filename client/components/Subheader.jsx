@@ -41,10 +41,6 @@ class SubHeader extends React.Component {
     }
   };
 
-  getExternalPins = () => {
-    this.setState({ pinObjects: [ExternalCardData.image_url, ExternalCardData.link] });
-  };
-
   handleToggle = () => {
     this.setState({ open: !this.state.open });
 
@@ -66,7 +62,6 @@ class SubHeader extends React.Component {
           <Toolbar>
             <ToolbarGroup style={styles} firstChild>
               <ChooseABoard onChange={this.getBoardPins} />
-              <RaisedButton label="Display Web Pins" onTouchTap={this.getExternalPins} />
             </ToolbarGroup>
             <ToolbarGroup style={styles} lastChild>
               <RaisedButton label="See Schedule" onTouchTap={this.handleToggle} />
@@ -93,7 +88,6 @@ class SubHeader extends React.Component {
         <Toolbar>
           <ToolbarGroup style={styles} firstChild>
             <ChooseABoard onChange={this.getBoardPins} />
-            <RaisedButton label="Display Web Pins" onTouchTap={this.getExternalPins} />
           </ToolbarGroup>
           <ToolbarGroup style={styles} lastChild>
             <RaisedButton label="See Schedule" onTouchTap={this.handleToggle} />
