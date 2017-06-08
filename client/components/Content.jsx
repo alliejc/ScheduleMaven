@@ -50,10 +50,10 @@ class Content extends React.Component {
   };
 
   render() {
-    // if (this.props.user) {
+    if (this.props.user) {
       const pins = this.state.pinObjects.map(pin => (
         <CardItem key={pin.id} pin={pin} />
-            ));
+        ));
 
       return (
         <div>
@@ -70,29 +70,29 @@ class Content extends React.Component {
             style={styles.loadMoreStyle}
             onTouchTap={this.handleTouchTap}
           >
-            Load More
-          </RaisedButton>
+                Load More
+              </RaisedButton>
           <Footer />
         </div>
       );
     }
-  //   return (
-  //     <div>
-  //       <div>
-  //         <StackGrid
-  //           columnWidth="25%"
-  //           monitorImagesLoaded
-  //         >
-  //           <Welcome />
-  //           <Welcome />
-  //           <Welcome />
-  //           <Welcome />
-  //         </StackGrid>
-  //       </div>
-  //       <Footer />
-  //     </div>
-  //   );
-  // }
+    return (
+      <div>
+        <div>
+          <StackGrid
+            columnWidth="25%"
+            monitorImagesLoaded
+          >
+            <Welcome />
+            <Welcome />
+            <Welcome />
+            <Welcome />
+          </StackGrid>
+        </div>
+        <Footer />
+      </div>
+    );
+  }
 }
 
 export default createContainer(() => ({

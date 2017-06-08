@@ -1,12 +1,18 @@
 pipeline:
+  install-test:
+    image: node:6.10.2
+    commands:
+      - npm install
+      - npm run lint
   build:
     image: ryanhanwu/docker-meteor
     commands:
       - env
-      - meteor npm install --allow-superuser
-      - meteor npm run lint
+#      - meteor npm install --allow-superuser
+#      - meteor npm run lint
       - meteor build --directory build --allow-superuser
-
+    when:
+      local: false
   publish:
     image: plugins/docker
     username: alisonjc
@@ -20,6 +26,7 @@ pipeline:
     insecure: true
     when:
       branch: master
+      local: false
 
   deploy:
     image: peloton/drone-rancher:15
@@ -33,3 +40,4 @@ pipeline:
     timeout: 180
     when:
       branch: master
+      local: false

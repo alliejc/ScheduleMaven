@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "start": "ROOT_URL=https://localhost:3001 meteor --settings settings.json",
-    "lint": "eslint . --ext jsx,js --fix"
+    "lint": "eslint . --ext jsx,js --fix",
+    "prepush": "eslint . --ext jsx,js --fix"
   },
   "dependencies": {
     "babel-preset-stage-0": "^6.22.0",
@@ -40,6 +41,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-meteor": "^4.0.1",
-    "eslint-plugin-react": "^6.10.3"
+    "eslint-plugin-react": "^6.10.3",
+    "husky": "^0.13.4"
   }
 }

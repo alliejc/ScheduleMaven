@@ -5,7 +5,6 @@ import NavigationClose from 'material-ui/svg-icons/navigation/close';
 import ChooseABoard from './ChooseBoard.jsx';
 import Content from './Content.jsx';
 import CardData from '../../imports/collections/CardData';
-import ExternalCardData from '../../imports/collections/ExternalCardData';
 import Schedule from './Schedule.jsx';
 
 const styles = {
