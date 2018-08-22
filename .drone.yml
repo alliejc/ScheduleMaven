@@ -17,27 +17,26 @@ pipeline:
     image: plugins/docker
     username: alisonjc
     secrets: [ docker_password ]
-    email: alison.jane.c@gmail.com
     repo: alisonjc/schedulemaven
     tag:
       - latest
       - ${DRONE_BUILD_NUMBER}
-    file: Dockerfile
-    insecure: true
     when:
+      event: push
       branch: master
-      local: false
 
-  deploy:
-    image: peloton/drone-rancher:15
-    url: http://rancher.seattleslow.com
-    access_key: 845E1894659FB1248837
-    secrets: [ rancher_secret_key ]
-    service: schedulemaven/web
-    docker_image: alisonjc/schedulemaven:${DRONE_BUILD_NUMBER}
-    start_first: false
-    confirm: true
-    timeout: 180
+  deploy-dev:
+    image: peloton/drone-helm:0.0.3
+    chart: ./helm/schedule-maven
+    update_dependencies: true
+    values:
+    - image.tag=${DRONE_BUILD_NUMBER}
+    release: alliejc
+    namespace: allie
+    wait: true
+    timeout: 200
+    secrets: [ api_server, kubernetes_token ]
     when:
+      event: [ push ]
       branch: master
-      local: false
+
