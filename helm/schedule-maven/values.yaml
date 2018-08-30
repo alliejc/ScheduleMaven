@@ -16,15 +16,12 @@ service:
 ingress:
   enabled: true
   annotations:
-    ingress.kubernetes.io/ssl-redirect: "true"
-    kubernetes.io/tls-acme: "true"
-    certmanager.k8s.io/cluster-issuer: letsencrypt
-    kubernetes.io/ingress.class: "nginx"
+    certmanager.k8s.io/cluster-issuer: letsencrypt-production
   path: /
   hosts:
     - www.schedulemaven.com
   tls:
-    - secretName: schedulemaven-tls
+    - secretName: www-schedulemaven-com-tls
       hosts:
         - www.schedulemaven.com
 
