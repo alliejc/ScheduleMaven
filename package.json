@@ -12,7 +12,7 @@
     "baobab": "^2.4.1",
     "baobab-react": "^2.1.2",
     "bluebird": "^3.5.0",
-    "deep-extend": "^0.4.1",
+    "deep-extend": "^0.5.1",
     "fullcalendar": "^3.1.0",
     "http": "0.0.0",
     "http-proxy": "^1.16.2",
